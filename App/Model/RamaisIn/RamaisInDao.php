@@ -3,10 +3,13 @@
 namespace App\Model\RamaisIn;
 
 use App\Model\Conexao;
+use App\Model\Read;
 
-class RamaisInDao
+class RamaisInDao extends Read
 {
 
+    private $sql;
+    
     public function create(RamaisIn $ramaisIn)
     {
         $sql = "INSERT INTO tbramais_in (numero, responsavel, setor) VALUES (?,?,?)";
@@ -26,21 +29,8 @@ class RamaisInDao
         $stmt->bindValue(4, $ramaisIn->getId());
         $stmt->execute();
     }
-    
-    public function read()
-    {
-        $sql = "SELECT * FROM tbramais_in";
-        $stmt = Conexao::getConn()->prepare($sql);
-        $stmt->execute();
-    
-        if($stmt->rowCount() > 0 ){
-            $teste = $stmt->fetchAll();
-            return $teste;
-        }else{
-            return [];
-        }
-    
-    }
+
+
     public function delete()
     {
         

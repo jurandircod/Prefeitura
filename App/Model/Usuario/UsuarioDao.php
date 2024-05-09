@@ -1,19 +1,15 @@
 <?php
 
 namespace App\Model;
-
 use App\Model\Conexao;
-class UsuarioDao {
+
+class UsuarioDao extends Read{
     private $sql;
-    
     public function create(){
         $this->sql = "INSERT INTO tbusuarios(nome,) VALUES ()";
     }
 
-    public function read(){
-
-    }
-
+    
     public function update(){
 
     }
@@ -22,5 +18,7 @@ class UsuarioDao {
 
     }
 }
+
+
 
 ?>

@@ -1,71 +1,62 @@
 <?php
 namespace App\Model\Locais;
 use App\Model\Conexao;
+use App\Model\Read;
 
-class LocaisDao {
+class LocaisDao extends Read {
+    
     private $sql;
-    private $sqlRead;
-    private $status;
-
-    public function getSqlRead(){
-        return $this->sqlRead;
-    }
-
-    public function setSqlRead($sql){
-        $this->sqlRead = $sql;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
 
     public function create(Locais $locais)
     {
-        $this->sql = "INSERT INTO tbramais_ex(nome, numero, setor) VALUES (?,?,?)";
+        $this->sql = "INSERT INTO tblocais(nome, descricao, rua, bairro, numero) VALUES (?,?,?,?,?)";
         $stmt = Conexao::getConn()->prepare($this->sql);
         $stmt->bindValue(1, $locais->getNome());
         $stmt->bindValue(2, $locais->getNumero());
-        $stmt->bindValue(3, $locais->getSetor());
-        $this->query($stmt->execute());
+        $stmt->bindValue(3, $locais->getRua());
+        $stmt->bindValue(4, $locais->getBairro());
+        $stmt->bindValue(5, $locais->getNumero());
+        $this->executeStatement($stmt);
     }
 
     public function read()
     {
         $this->sqlRead;
         $stmt =  Conexao::getConn()->prepare($this->sql);
-        $this->query($stmt->execute());
+        $this->executeStatement($stmt);
     }
 
 
-    public function update(RamaisEx $ramaisEx)
+    public function update(Locais $locais)
     {
-        $this->sql = "UPDATE tbramais_ex SET nome = IFNULL(?, nome), numero = IFNULL(?, numero), setor =IFNULL(?, setor) WHERE id = ?";
+        $this->sql = "UPDATE tblocais SET nome = IFNULL(?, nome), descricao = IFNULL(?, descricao), rua =IFNULL(?, rua), bairro = IFNULL(?, numero) WHERE id = ?";
         $stmt = Conexao::getConn()->prepare($this->sql);
-        $stmt->bindValue(1, $ramaisEx->getNome());
-        $stmt->bindValue(2, $ramaisEx->getNumero());
-        $stmt->bindValue(3, $ramaisEx->getSetor());
-        $stmt->bindValue(4, $ramaisEx->getId());
-        $this->query($stmt->execute());
+        $stmt->bindValue(1, $locais->getNome());
+        $stmt->bindValue(2, $locais->getNumero());
+        $stmt->bindValue(3, $locais->getRua());
+        $stmt->bindValue(4, $locais->getBairro());
+        $stmt->bindValue(5, $locais->getNumero());
+        $this->executeStatement($stmt);
     }
 
-    public function delete(RamaisEx $ramaisEx)
+    public function delete(Locais $locais)
     {
-        $this->sql = "DELETE FROM tbramais_ex WHERE id = ?";
+        $this->sql = "DELETE FROM tblocais WHERE id = ?";
         $stmt = Conexao::getConn()->prepare($this->sql);
-        $stmt->bindValue(1, $ramaisEx->getId());
-        $this->query($stmt->execute());
+        $stmt->bindValue(1, $locais->getId());
+        $this->executeStatement($stmt);
     }
 
 
-    private function query($query)
+    private function executeStatement($stmt)
     {
-        if ($query) {
-            //Sucesso na consulta
-            $this->status = 1;
-        } else {
-            //Erro na consulta
-            $this->status = 0;
+        try {
+            $stmt->execute();
+            $this->status = true;
+            // Retorna resultados da consulta
+        } catch (\PDOException $e) {
+            // Tratar o erro
+            $this->status = "Erro na consulta: " . $e->getMessage();
         }
     }
 }

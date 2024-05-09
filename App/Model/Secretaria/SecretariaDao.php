@@ -1,9 +1,11 @@
 <?php
 namespace App\Model\Secretaria;
 use App\Model\Conexao;
-class SecretariaDao
+use App\Model\Read;
+
+class SecretariaDao extends Read
 {
-    
+    private $sql;
     /**
      * Cria um novo registro de Secretaria.
      *
@@ -33,16 +35,4 @@ class SecretariaDao
 
     }
 
-    public function read(){
-        $sql = "SELECT * FROM tbsecretarias";
-        $stmt = Conexao::getConn()->prepare($sql);
-        $stmt->execute();
-
-        if($stmt->rowCount() > 0):
-            $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            return $resultado;
-        endif;
-            return [];
-        
-    }
 }
