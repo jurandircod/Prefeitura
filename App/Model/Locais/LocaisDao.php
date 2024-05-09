@@ -48,15 +48,5 @@ class LocaisDao extends Read {
     }
 
 
-    private function executeStatement($stmt)
-    {
-        try {
-            $stmt->execute();
-            $this->status = true;
-            // Retorna resultados da consulta
-        } catch (\PDOException $e) {
-            // Tratar o erro
-            $this->status = "Erro na consulta: " . $e->getMessage();
-        }
-    }
+   
 }
