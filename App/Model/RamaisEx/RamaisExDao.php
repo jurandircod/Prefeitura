@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Model\RamaisEx;
+namespace App\Model;
 
-use App\Model\Conexao;
+
 
 class RamaisExDao
 {

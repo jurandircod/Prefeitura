@@ -1,8 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
 
-$ramaisExDao = new \App\Model\RamaisEx\RamaisExDao();
-$ramaisEx = new \App\Model\RamaisEx\RamaisEx();
+$ramaisExDao = new \App\Model\RamaisExDao();
+$ramaisEx = new \App\Model\RamaisEx();
 
 $ramaisEx->setNome("agricultura");
 $ramaisEx->setNumero("9988");

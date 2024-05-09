@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Model\RamaisIn;
-use App\Model\Conexao;
+namespace App\Model;
 
 class RamaisInDao
 {

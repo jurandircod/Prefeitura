@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\RamaisEx;
+namespace App\Model;
 
 class RamaisEx{
     
