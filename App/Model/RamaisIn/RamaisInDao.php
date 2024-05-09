@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\RamaisIn;
+
+use App\Model\Conexao;
 
 class RamaisInDao
 {
@@ -24,6 +26,7 @@ class RamaisInDao
         $stmt->bindValue(4, $ramaisIn->getId());
         $stmt->execute();
     }
+    
     public function read()
     {
         $sql = "SELECT * FROM tbramais_in";
