@@ -14,6 +14,7 @@ class RamaisExDao
      * @param RamaisEx $ramaisEx O objeto RamaisEx contendo os dados do ramal a ser criado.
      * @return void
      */
+    
     public function create(RamaisEx $ramaisEx)
     {
         $sql = "INSERT INTO tbramais_ex(nome, numero, setor) VALUES (?,?,?)";
@@ -73,6 +74,7 @@ class RamaisExDao
      * @param PDOStatement $stmt A declaração preparada a ser executada.
      * @return array|false Retorna um array contendo os resultados da consulta, ou false em caso de falha.
      */
+
     private function executeStatement($stmt)
     {
         try {
@@ -82,7 +84,7 @@ class RamaisExDao
         } catch (\PDOException $e) {
             // Tratar o erro
             $this->status = 0;
-            echo "Erro: " . $e->getMessage();
+            echo "Erro na consulta: " . $e->getMessage();
             return false;
         }
     }

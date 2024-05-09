@@ -4,11 +4,12 @@ require_once 'vendor/autoload.php';
 $ramaisExDao = new \App\Model\RamaisEx\RamaisExDao();
 $ramaisEx = new \App\Model\RamaisEx\RamaisEx();
 
-$ramaisEx->setNome("agricultura");
-$ramaisEx->setNumero("9988");
-$ramaisEx->setSetor("agricultura");
+$ramaisEx->setNome("teste1");
 
-$ramaisExDao->create($ramaisEx);
+$ramaisEx->setSetor("teste2");
+$ramaisEx->setId(11);
+
+$ramaisExDao->update($ramaisEx);
 
 
 

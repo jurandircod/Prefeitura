@@ -4,19 +4,26 @@ use App\Model\Conexao;
 class SecretariaDao
 {
     
-    public function create(Secretaria $nome){
+    /**
+     * Cria um novo registro de Secretaria.
+     *
+     * @param Secretaria $nome O objeto RamaisEx contendo os dados do ramal a ser criado.
+     * @return void
+     */
+
+    public function create(Secretaria $secretaria){
         $sql = 'INSERT INTO tbsecretarias(nome) VALUES (?)';
         $stmt =  Conexao::getConn()->prepare($sql);
-        $stmt->bindValue(1, $nome->getNome());
+        $stmt->bindValue(1, $secretaria->getNome());
         $stmt->execute();
     }
 
-    public function update(Secretaria $nome){
-        $sql = "UPDATE `tbsecretarias` SET `nome`='?' 
+    public function update(Secretaria $secretaria){
+        $sql = "UPDATE tbsecretarias SET nome = IFNULL(?, nome) 
         WHERE id =?";
         $stmt = Conexao::getConn()->prepare($sql);
-        $stmt->bindValue(1, $nome->getNome());
-        $stmt->bindValue(2, $nome->getId());
+        $stmt->bindValue(1, $secretaria->getNome());
+        $stmt->bindValue(2, $secretaria->getId());
     }
 
     public function delete(Secretaria $id){
