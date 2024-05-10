@@ -1,6 +1,9 @@
 <?php
 
+
+
 namespace App\Model\RamaisEx;
+require_once '../../../vendor/autoload.php';
 
 use App\Model\Conexao;
 use App\Model\Read;
@@ -25,14 +28,6 @@ class RamaisExDao extends Read
         $stmt->bindValue(3, $ramaisEx->getSetor());
         $this->executeStatement($stmt);
     }
-
-    /**
-     * Retorna todos os registros de ramais.
-     *
-     * @return array|false Retorna um array contendo os registros de ramais, ou false em caso de falha.
-     */
-
-    
 
     /**
      * Atualiza um registro de ramal existente.
@@ -64,13 +59,5 @@ class RamaisExDao extends Read
         $stmt->bindValue(1, $ramaisEx->getId());
         $this->executeStatement($stmt);
     }
-
-    /**
-     * Executa uma declaração preparada SQL.
-     *
-     * @param PDOStatement $stmt A declaração preparada a ser executada.
-     * @return array|false Retorna um array contendo os resultados da consulta, ou false em caso de falha.
-     */
-
     
 }

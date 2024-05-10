@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use PDOException;
+
 class Read
 {
 
@@ -33,20 +35,31 @@ class Read
     public function read(){
         
         $stmt = Conexao::getConn()->prepare($this->sqlRead);
-        $stmt->execute();
-
+        
+        try{
+        
+            $stmt->execute();
+        
+        }catch(PDOException $e){
+            
+            die("Erro na consulta: $e");
+        
+        }
+        
         if($stmt->rowCount() > 0):
             $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             return $resultado;
         endif;
             return [];
-        
     }
 
-    /*
-    *Função que trata os erros que ocorrem nas alterações feitas no banco pelas classes 
-    *retornando o tipo de erro pro atributo status
-    */
+    /**
+     * Executa uma declaração preparada SQL.
+     *
+     * @param PDOStatement $stmt A declaração preparada a ser executada.
+     * @return array|false Retorna um array contendo os resultados da consulta, ou false em caso de falha.
+     */
+
     protected function executeStatement($stmt)
     {
         try {

@@ -4,10 +4,10 @@ namespace App\Model\RamaisEx;
 
 class RamaisEx{
     
-    private $id;
-    private $nome;
-    private $numero;
-    private $setor;
+    protected $id;
+    protected $nome;
+    protected $numero;
+    protected $setor;
 
     public function getNome(){
         return $this->nome;
