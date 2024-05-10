@@ -6,6 +6,7 @@ use App\Model\Read;
 class SecretariaDao extends Read
 {
     private $sql;
+    
     /**
      * Cria um novo registro de Secretaria.
      *
@@ -14,23 +15,23 @@ class SecretariaDao extends Read
      */
 
     public function create(Secretaria $secretaria){
-        $sql = 'INSERT INTO tbsecretarias(nome) VALUES (?)';
-        $stmt =  Conexao::getConn()->prepare($sql);
+        $this->sql = 'INSERT INTO tbsecretarias(nome) VALUES (?)';
+        $stmt =  Conexao::getConn()->prepare($this->sql);
         $stmt->bindValue(1, $secretaria->getNome());
         $stmt->execute();
     }
 
     public function update(Secretaria $secretaria){
-        $sql = "UPDATE tbsecretarias SET nome = IFNULL(?, nome) 
+        $this->sql = "UPDATE tbsecretarias SET nome = IFNULL(?, nome) 
         WHERE id =?";
-        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt = Conexao::getConn()->prepare($this->sql);
         $stmt->bindValue(1, $secretaria->getNome());
         $stmt->bindValue(2, $secretaria->getId());
     }
 
     public function delete(Secretaria $id){
-        $sql = "DELETE FROM tbsecretarias WHERE id = ?";
-        $stmt = Conexao::getConn()->prepare($sql);
+        $this->sql = "DELETE FROM tbsecretarias WHERE id = ?";
+        $stmt = Conexao::getConn()->prepare($this->sql);
         $stmt->bindValue(1, $id->getId());
 
     }

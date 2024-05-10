@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Model;
 
 class Read
@@ -8,6 +7,10 @@ class Read
     protected $sqlRead;
     protected $status;
 
+    /*
+    *getSetters
+    *
+    */
     public function getSqlRead()
     {
         return $this->sqlRead;
@@ -23,6 +26,10 @@ class Read
         return $this->status;
     }
 
+    /*
+    função reader ela recebe um comando sql contido do atributo sqlRead e executa retornando os resultados da consulta
+    que serão tratados no controler
+    */
     public function read(){
         
         $stmt = Conexao::getConn()->prepare($this->sqlRead);
@@ -36,6 +43,10 @@ class Read
         
     }
 
+    /*
+    *Função que trata os erros que ocorrem nas alterações feitas no banco pelas classes 
+    *retornando o tipo de erro pro atributo status
+    */
     protected function executeStatement($stmt)
     {
         try {
