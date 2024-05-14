@@ -4,13 +4,17 @@ require_once 'vendor/autoload.php';
 
 $ramaisExDao = new App\Model\RamaisEx\RamaisExDao();
 $ramaisEx = new \App\Model\RamaisEx\RamaisEx();
+
 $ramaisEx->setNome('a');
 $ramaisEx->setNumero('22');
 $ramaisEx->setSetor('af');
 
 $sql = "SELECT * FROM tbramais_ex";
 $ramaisExDao->setSqlRead($sql);
-var_dump($ramaisExDao->read());
+$ramaisExDao->create($ramaisEx);
+foreach ($ramaisExDao->read() as $nome) {
+    echo $nome['numero'];
+}
 
 
 ?>

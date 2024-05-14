@@ -3,7 +3,7 @@
 
 
 namespace App\Model\RamaisEx;
-require_once '../../../vendor/autoload.php';
+
 
 use App\Model\Conexao;
 use App\Model\Read;
