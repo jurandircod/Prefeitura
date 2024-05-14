@@ -10,6 +10,7 @@ class Locais {
     private $descricao;
     private $rua;
     private $bairro;
+    private $fkSecretaria;
 
     public function getId(){
         return $this->id; 
@@ -58,5 +59,15 @@ class Locais {
      public function setBairro($bairro){
          $this->bairro = $bairro;
      }
+
+     public function getFkSecretaria(){
+        return $this->fkSecretaria; 
+     }
+ 
+     public function setFkSecretaria($fkSecretaria){
+         $this->fkSecretaria = $fkSecretaria;
+     }
+     
+
 
 }

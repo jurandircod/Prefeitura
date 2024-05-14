@@ -12,11 +12,12 @@ class RamaisInDao extends Read
     
     public function create(RamaisIn $ramaisIn)
     {
-        $sql = "INSERT INTO tbramais_in (numero, responsavel, setor) VALUES (?,?,?)";
+        $sql = "INSERT INTO tbramais_in (numero, responsavel, setor, fklocais) VALUES (?,?,?,?)";
         $stmt = Conexao::getConn()->prepare($sql);
         $stmt->bindValue(1, $ramaisIn->getNumero());
         $stmt->bindValue(2, $ramaisIn->getResponsavel());
         $stmt->bindValue(3, $ramaisIn->getSetor());
+        $stmt->bindValue(4, $ramaisIn->getFkLocais());
         $stmt->execute();
     }
     public function update(RamaisIn $ramaisIn)

@@ -8,7 +8,7 @@ class RamaisIn {
     private $numero;
     private $responsavel;
     private $setor;
-    private $fkSecretaria;
+    private $fkLocais;
 
     public function getNumero() : String{
         return $this->numero;
@@ -18,12 +18,12 @@ class RamaisIn {
         $this->numero = $numero;
     }
 
-    public function getfkSecretaria() : String{
-        return $this->fkSecretaria;
+    public function getFkLocais() : String{
+        return $this->fkLocais;
     }
     
-    public function setfkSecretaria(String $fkSecretaria){
-        $this->fkSecretaria = $fkSecretaria;
+    public function setfkLocais(String $fkLocais){
+        $this->fkLocais = $fkLocais;
     }
 
 

@@ -5,6 +5,10 @@ require_once 'vendor/autoload.php';
 $ramaisExDao = new App\Model\RamaisEx\RamaisExDao();
 $ramaisEx = new \App\Model\RamaisEx\RamaisEx();
 
+$ramaisIn = new \App\Model\RamaisIn\RamaisIn();
+$ramaisInDao = new \App\Model\RamaisIn\RamaisInDao();
+
+
 $ramaisEx->setNome('a');
 $ramaisEx->setNumero('22');
 $ramaisEx->setSetor('af');
@@ -29,19 +33,31 @@ foreach ($ramaisExDao->read() as $nome) {
 
 <body>
 
-    <form action="App/Controler//RamaisEx//Create.php" method="post">
+    <form action="App/Controler//Usuario//Create.php" method="post">
         <div>
             <label for="">Nome</label>
-            <input type="text" name="ramaisExNome">
+            <input type="text" name="usuarioNome">
         </div>
         <div>
             <label for="">Setor</label>
-            <input type="text" name="ramaisExSetor">
+            <input type="text" name="usuarioSenha">
+        </div>
+        <!--<div>
+            <label for="">Numero</label>
+            <input type="text" name="locaisRua">
         </div>
         <div>
-            <label for="">Numero</label>
-            <input type="text" name="ramaisExNumero">
+            <label for="">Locais</label>
+            <input type="text" name="locaisIdSecretaria">
         </div>
+        <div>
+            <label for="">Locais</label>
+            <input type="text" name="locaisBairro">
+        </div>
+        <div>
+            <label for="">Locais</label>
+            <input type="text" name="locaisNumero">
+        </div>-->
         <button type="submit">Enviar</button>
     </form>
 

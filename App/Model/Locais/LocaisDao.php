@@ -9,13 +9,14 @@ class LocaisDao extends Read {
 
     public function create(Locais $locais)
     {
-        $this->sql = "INSERT INTO tblocais(nome, descricao, rua, bairro, numero) VALUES (?,?,?,?,?)";
+        $this->sql = "INSERT INTO tblocais(nome, descricao, rua, bairro, numero, fksecretarias) VALUES (?,?,?,?,?,?)";
         $stmt = Conexao::getConn()->prepare($this->sql);
         $stmt->bindValue(1, $locais->getNome());
         $stmt->bindValue(2, $locais->getNumero());
         $stmt->bindValue(3, $locais->getRua());
         $stmt->bindValue(4, $locais->getBairro());
         $stmt->bindValue(5, $locais->getNumero());
+        $stmt->bindValue(6, $locais->getFkSecretaria());
         $this->executeStatement($stmt);
     }
 
