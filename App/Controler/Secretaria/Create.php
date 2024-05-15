@@ -24,7 +24,7 @@ class ControlerSecretaria
             $secretaria->setNome($this->nome);
             $secretariaDao->create($secretaria);
             // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura");
+            header("Location: /prefeitura/index.php?p=secretaria");
             exit; // Termina o script após o redirecionamento   
             $this->error = "Nome e setor não podem ser vazios";
         

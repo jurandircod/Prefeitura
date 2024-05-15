@@ -4,6 +4,7 @@
 require_once 'vendor/autoload.php';
 $ramaisEx = new \App\Model\RamaisEx\RamaisEx;
 $ramaisExDao = new \App\Model\RamaisEx\RamaisExDao;
+$pages = new \App\View\Pages;
 
 $sql = "SELECT * FROM tbramais_ex";
 $ramaisExDao->setSqlRead($sql);
@@ -13,7 +14,7 @@ $listaRamais = $ramaisExDao->read();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Prefeitura</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,6 +36,8 @@ $listaRamais = $ramaisExDao->read();
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+    <link rel="shortcut icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/6a/4b/6e/6a4b6ecd-668b-abe5-4eff-58a16ecab229/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" type="image/x-icon">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -55,127 +58,21 @@ $listaRamais = $ramaisExDao->read();
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="index.php" class="nav-link">Prefeitura de Cruzeiro do Oeste</a>
                 </li>
+
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="login.php" class="nav-link">Logar</a>
+                </li>
                 </li>
 
-                <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                    </div>
-                </li>
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
+
+
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -185,7 +82,8 @@ $listaRamais = $ramaisExDao->read();
             <!-- Brand Logo -->
             <a href="index.php" class="brand-link">
                 <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/6a/4b/6e/6a4b6ecd-668b-abe5-4eff-58a16ecab229/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Ceuzeiro do Oeste</span>
+                <span class="brand-text font-weight-light">Cruzeiro do Oeste</span>
+
             </a>
 
             <!-- Sidebar -->
@@ -198,27 +96,58 @@ $listaRamais = $ramaisExDao->read();
                with font-awesome or any other icon font library -->
 
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link">
+                            <a href="index.php?p=search" class="nav-link">
                                 <i class="nav-icon fas fa-search"></i>
                                 <p>
                                     Search
+                                </p>
+                            </a>
+
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="index.php" class="nav-link">
+                                <i class="nav-icon fas fa-plus"></i>
+                                <p>
+                                    Cadastrar
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
+
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/search/simple.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Search</p>
+                                    <a href="index.php?p=locais" class="nav-link">
+                                        <i class=""></i>
+                                        <p>Cadastrar Locais</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/search/enhanced.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Enhanced</p>
+                                    <a href="index.php?p=secretaria" class="nav-link">
+                                        <i class=""></i>
+                                        <p>Cadastrar Secretaria</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="index.php?p=ramaisEx" class="nav-link">
+                                        <i class=""></i>
+                                        <p>Cadastrar Ramais Externos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="index.php?p=ramaisIn" class="nav-link">
+                                        <i class=""></i>
+                                        <p>Cadastrar Ramais Internos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="index.php?p=usuarios" class="nav-link">
+                                        <i class=""></i>
+                                        <p>Cadastrar Usuario</p>
                                     </a>
                                 </li>
                             </ul>
+
                         </li>
 
                     </ul>
@@ -231,142 +160,42 @@ $listaRamais = $ramaisExDao->read();
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div class="container-fluid">
-                <h2 class="text-center display-4">Lista de Ramais</h2>
-                <form>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row" style="justify-content: center">
-                                <div class="form-group col-6">
-                                    <div class="input-group">
-                                        <input autocomplete="off" id="nome" type="search" class="ajax form-control form-control" placeholder="Pesquise pelo nome ou secretaria">
-                                    </div>
-                                    <div class="row" style="justify-content: center">
-                                        <a style="margin-top:25px" onclick="exportarPDF()" class="btn btn-success">Exportar
-                                            PDF</a>
 
-                                        <div style="margin-left:35px"><a style="margin-top:25px" href="local/ramal/lista/lista_fisica/download_pdf.php?id=1" class="btn btn-primary">Baixar Lista Física</a></div>
-                                        <div style="margin-left:30px; margin-top: 10px" ;="">
-                                            <h6 style="margin-top:25px;opacity: 60%">Última atualização:28/07/2023 14:42</h6>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-solid">
-                        <div class="card-body pb-0">
-                            <div id="Cont/ent" class="row">
-                                <?php foreach ($listaRamais as $lista) : ?>
-                                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                                        <div class="card bg-light d-flex flex-fill">
-                                            <div class="card-body pt-0">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <h2 class="lead"><b><?php echo $lista['nome'] ?></b></h2>
-                                                        <p class="text-muted text-sm"><b>Setor:</b>Diretoria de Tecnologia e Informação</p>
-                                                        <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                            <li class="great"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefone/Ramal: <b>168</b></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-
-                    </script>
-                    <script>
-                        $(document).ready(function() {
-                            function showLoading() {
-                                // Exibe a tela de carregamento
-                                document.getElementById('loadingOverlay').style.display = 'flex';
-                            }
-
-                            function hideLoading() {
-                                // Oculta a tela de carregamento
-                                document.getElementById('loadingOverlay').style.display = 'none';
-                            }
-
-                            teste()
-                            $("input[type='search']").bind('click', function(e) {
-                                if (this.value == "") {
-                                    console.log(nome);
-                                    var datas = {
-                                        p_nome: 0,
-                                    }
-
-                                    $.get('local/ramal/lista/ajax_data.php', datas, function(retorna) {
-                                        $('#Content').html(retorna);
-                                    })
-
-                                }
-                            });
-                        });
-
-
-                        function exportarPDF() {
-
-                            window.location.href = 'local/ramal/lista/exportar_pdf.php';
-                            alert("Donwload Iniciado favor aguardar");
-                        }
-
-                        function teste() {
-
-
-                            var nome = $('#nome').val();
-
-
-                            console.log(nome);
-                            var datas = {
-
-                                p_nome: nome,
-                            }
-
-                            $.get('local/ramal/lista/ajax_data.php', datas, function(retorna) {
-                                $('#Content').html(retorna);
-
-                            })
-                        }
-                        $(".ajax").keyup(function(e) {
-                            e.preventDefault();
-                            teste();
-                        })
-
-                        $('input').keypress(function(e) {
-                            if (e.which == 13) {
-                                e.preventDefault();
-
-                            }
-                        });
-                        $(function() {
-                            //Initialize Select2 Elements
-                            $('.select2').select2()
-
-                            //Initialize Select2 Elements
-                            $('.select2bs4').select2({
-                                theme: 'bootstrap4'
-                            })
-                        })
-                    </script>
-                </form>
-            </div>
+            <?php
+            switch ($_GET['p']) {
+                
+                case "locais":
+                    $pages->mostrarLocais();
+                    break;
+                case "ramaisIn":
+                    $pages->mostrarRamaisIn();
+                    break;
+                case "ramaisEx":
+                    $pages->mostrarRamaisEx();
+                    break;
+                case "secretaria":
+                    $pages->mostrarSecretaria();
+                    break;
+                case "usuario":
+                    $pages->mostrarUsuario();
+                    break;
+                case "search":
+                    $pages->mostrarSearch();
+                    break;
+                default:
+                    $pages->mostrarSearch();
+                    break;
+            }
+            ?>
 
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            <strong>Copyright &copy; 2014-2021 <a href="http://www.cruzeirodooeste.pr.gov.br/">Prefeitura de Cruzeiro do Oeste/PR</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0
+                <b>Version</b> 1.0
             </div>
         </footer>
 
@@ -381,6 +210,23 @@ $listaRamais = $ramaisExDao->read();
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
+
+
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
@@ -409,9 +255,28 @@ $listaRamais = $ramaisExDao->read();
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
 </body>
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
 
 </html>
