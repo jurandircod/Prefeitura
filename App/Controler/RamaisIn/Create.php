@@ -34,7 +34,7 @@ class ControlerRamaisIn
             $ramaisIn->setSetor($this->setor);
             $ramaisInDao->create($ramaisIn);
             // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura/App/Model/Read.php");
+            header("Location: /prefeitura/index.php?p=ramaisIn");
             exit; // Termina o script após o redirecionamento
         
             $this->error = "Nome e setor não podem ser vazios";

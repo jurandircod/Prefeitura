@@ -2,13 +2,8 @@
 <html lang="pt-br">
 <?php
 require_once 'vendor/autoload.php';
-$ramaisEx = new \App\Model\RamaisEx\RamaisEx;
-$ramaisExDao = new \App\Model\RamaisEx\RamaisExDao;
 $pages = new \App\View\Pages;
 
-$sql = "SELECT * FROM tbramais_ex";
-$ramaisExDao->setSqlRead($sql);
-$listaRamais = $ramaisExDao->read();
 ?>
 
 <head>
@@ -95,16 +90,34 @@ $listaRamais = $ramaisExDao->read();
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                        <li class="nav-item menu-open">
+
+                        <li class="nav-item">
                             <a href="index.php?p=search" class="nav-link">
                                 <i class="nav-icon fas fa-search"></i>
                                 <p>
-                                    Search
+                                    Todos os Telefones
                                 </p>
                             </a>
-
-
                         </li>
+                        
+                        <li class="nav-item">
+                            <a href="index.php?p=search" class="nav-link">
+                                <i class="nav-icon fas fa-search"></i>
+                                <p>
+                                    Ramais Externos
+                                </p>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="index.php?p=search" class="nav-link">
+                                <i class="nav-icon fas fa-search"></i>
+                                <p>
+                                    Ramais Internos
+                                </p>
+                            </a>
+                        </li>
+
 
                         <li class="nav-item">
                             <a href="index.php" class="nav-link">
@@ -162,30 +175,7 @@ $listaRamais = $ramaisExDao->read();
             <!-- Content Header (Page header) -->
 
             <?php
-            switch ($_GET['p']) {
-                
-                case "locais":
-                    $pages->mostrarLocais();
-                    break;
-                case "ramaisIn":
-                    $pages->mostrarRamaisIn();
-                    break;
-                case "ramaisEx":
-                    $pages->mostrarRamaisEx();
-                    break;
-                case "secretaria":
-                    $pages->mostrarSecretaria();
-                    break;
-                case "usuario":
-                    $pages->mostrarUsuario();
-                    break;
-                case "search":
-                    $pages->mostrarSearch();
-                    break;
-                default:
-                    $pages->mostrarSearch();
-                    break;
-            }
+            $pages->mostrarCadastramento(@$_GET['p']);
             ?>
 
             <!-- /.content -->

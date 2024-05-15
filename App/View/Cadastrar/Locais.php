@@ -32,7 +32,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                 </div>
-                                <input type="text" nome="locaisBairro" class="form-control">
+                                <input type="text" name="locaisBairro" class="form-control">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -46,7 +46,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
-                                <input type="text" nome="locaisRua" class="form-control">
+                                <input type="text" name="locaisRua" class="form-control">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -60,7 +60,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
-                                <input type="text" nome="locaisNumero" class="form-control">
+                                <input type="text" name="locaisNumero" class="form-control">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -72,7 +72,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-laptop"></i></span>
                                 </div>
-                                <input type="text" nome="locaisIdSecretaria" class="form-control">
+                                <input type="text" name="locaisIdSecretaria" class="form-control">
                             </div>
                             <!-- /.input group -->
                         </div>

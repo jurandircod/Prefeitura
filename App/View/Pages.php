@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\View;
 
 
@@ -11,42 +9,77 @@ class Pages
    private $ramaisIn;
    private $secretaria;
 
-   public function mostrarLocais()
+   private function cadastrarLocais()
    {
       include('Cadastrar/Locais.php');
    }
 
-   public function mostrarRamaisEx()
+   private function cadastrarRamaisEx()
    {
-        
+      $ramaisEx = new \App\Model\RamaisEx\RamaisEx;
+      $ramaisExDao = new \App\Model\RamaisEx\RamaisExDao;
+      
+
+      $sql = "SELECT * FROM tbramais_ex";
+      $ramaisExDao->setSqlRead($sql);
+      $listaRamais = $ramaisExDao->read();
       include('Cadastrar/RamaisEx.php');
    
    }
 
-   public function mostrarRamaisIn()
+   private function cadastrarRamaisIn()
    {
       include('Cadastrar/RamaisIn.php');
    }
 
-   public function mostrarSecretaria()
+   private function cadastrarSecretaria()
    {
       include('Cadastrar/Secretaria.php');
    }
 
-   public function mostrarUsuario()
+   private function cadastrarUsuario()
    {
       include('Cadastrar/Usuario.php');
    }
 
-   public function mostrarSearch()
+   private function mostrarSearch()
    {
+
       $ramaisEx = new \App\Model\RamaisEx\RamaisEx;
       $ramaisExDao = new \App\Model\RamaisEx\RamaisExDao;
-      $pages = new \App\View\Pages;
-
+      
       $sql = "SELECT * FROM tbramais_ex";
       $ramaisExDao->setSqlRead($sql);
       $listaRamais = $ramaisExDao->read();
       include('Cadastrar/Search.php');
    }
+
+   public function mostrarCadastramento($pages){
+      
+      switch ($pages) {
+         
+         case "locais":
+             $this->cadastrarLocais();
+             break;
+         case "ramaisIn":
+             $this->cadastrarRamaisIn();
+             break;
+         case "ramaisEx":
+             $this->cadastrarRamaisEx();
+             break;
+         case "secretaria":
+             $this->cadastrarSecretaria();
+             break;
+         case "usuario":
+             $this->cadastrarUsuario();
+             break;
+         case "search":
+             $this->mostrarSearch();
+             break;
+         default:
+             $this->mostrarSearch();
+             break;
+     }
+   }
+
 }
