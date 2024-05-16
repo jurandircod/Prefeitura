@@ -247,6 +247,7 @@ $pages = new \App\View\Pages;
     <!-- AdminLTE for demo purposes -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
+    <script src="dist/js/ajax/search.js"></script>
 </body>
 
 <script>
@@ -267,6 +268,10 @@ $pages = new \App\View\Pages;
             "responsive": true,
         });
     });
+</script>
+
+<script>
+    
 </script>
 
 </html>
