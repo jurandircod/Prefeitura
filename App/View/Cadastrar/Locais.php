@@ -1,3 +1,11 @@
+<?php
+use App\Model\Secretaria\SecretariaDao;
+$secretaria = new SecretariaDao;
+$secretaria->setSqlRead("SELECT * FROM tbsecretarias");
+$rowSecretaria = $secretaria->read();
+
+?>
+
 <div class="container-fluid">
 
     <div class="row mt-3">
@@ -72,7 +80,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-laptop"></i></span>
                                 </div>
-                                <input type="text" name="locaisIdSecretaria" class="form-control">
+                                <select class="form-control" name="locaisIdSecretaria" id="">
+                                    <?php foreach($rowSecretaria as $secretaria): ?>
+                                    <option value="<?php echo $secretaria['id'] ?>"><?php echo $secretaria['nome'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -97,7 +110,6 @@
             <!-- /.card-body -->
 
             <!-- /.card -->
-
 
             <!-- /.card -->
 

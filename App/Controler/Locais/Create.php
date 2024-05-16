@@ -30,14 +30,14 @@ class LocaisControler
 
     public function create(Locais $locais, LocaisDao $locaisDao)
     {
-
-
         $locais->setNome($this->nome);
         $locais->setDescricao($this->descricao);
         $locais->setRua($this->rua);
         $locais->setBairro($this->bairro);
         $locais->setNumero($this->numero);
         $locais->setFkSecretaria($this->idSecretaria);
+        die();
+        var_dump($locais);
         $locaisDao->create($locais);
         // Redirecionamento para uma rota dentro do servidor
         header("Location: /prefeitura/index.php?p=locais");
@@ -52,5 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new LocaisControler($_POST);
     $locais = new Locais();
     $locaisDao = new LocaisDao();
+    
     $controller->create($locais, $locaisDao);
 }

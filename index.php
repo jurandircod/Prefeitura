@@ -32,6 +32,7 @@ $pages = new \App\View\Pages;
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
+
     <link rel="shortcut icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/6a/4b/6e/6a4b6ecd-668b-abe5-4eff-58a16ecab229/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" type="image/x-icon">
 </head>
 
@@ -99,7 +100,7 @@ $pages = new \App\View\Pages;
                                 </p>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a href="index.php?p=search" class="nav-link">
                                 <i class="nav-icon fas fa-search"></i>
@@ -108,7 +109,7 @@ $pages = new \App\View\Pages;
                                 </p>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a href="index.php?p=search" class="nav-link">
                                 <i class="nav-icon fas fa-search"></i>
@@ -248,6 +249,8 @@ $pages = new \App\View\Pages;
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
     <script src="dist/js/ajax/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 
 <script>
@@ -271,7 +274,7 @@ $pages = new \App\View\Pages;
 </script>
 
 <script>
-    
+
 </script>
 
 </html>

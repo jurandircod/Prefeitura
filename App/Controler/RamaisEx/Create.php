@@ -7,16 +7,13 @@ use App\Model\RamaisEx\RamaisEx;
 
 class ControlerRamaisEx
 {
-    private $id;
     private $nome;
     private $numero;
     private $setor;
-    private $error;
 
-    public function __construct($arrayPost)
+    public function __construct($arrayPost,)
     {
         // Usando $arrayPost passado para o construtor
-        $this->id = $arrayPost['ramaisExId'];
         $this->nome = $arrayPost['ramaisExNome'];
         $this->numero = $arrayPost['ramaisExNumero'];
         $this->setor = $arrayPost['ramaisExSetor'];
@@ -25,17 +22,32 @@ class ControlerRamaisEx
     public function create(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao)
     {
 
-        
-            $ramaisEx->setNome($this->nome);
-            $ramaisEx->setNumero($this->numero);
-            $ramaisEx->setSetor($this->setor);
-            $ramaisExDao->create($ramaisEx);
-            // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura/index.php?p=ramaisEx");
-            exit; // Termina o script após o redirecionamento
-        
-            $this->error = "Nome e setor não podem ser vazios";
-        
+        $ramaisEx->setNome($this->nome);
+        $ramaisEx->setNumero($this->numero);
+        $ramaisEx->setSetor($this->setor);
+        $ramaisExDao->create($ramaisEx);
+        // Redirecionamento para uma rota dentro do servidor
+        header("Location: /prefeitura/index.php?p=ramaisEx");
+        exit; // Termina o script após o redirecionamento
+    }
+
+    public function delete(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao, $id)
+    {
+        $ramaisEx->setId($id);
+        $ramaisExDao->delete($ramaisEx);
+        header("Location: /prefeitura/index.php?p=ramaisEx");
+        exit;
+    }
+
+    public function update(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao, $id)
+    {
+        $ramaisEx->setId($id);
+        $ramaisEx->setNome($this->nome);
+        $ramaisEx->setNumero($this->numero);
+        $ramaisEx->setSetor($this->setor);
+        $ramaisExDao->update($ramaisEx);
+        header("Location: /prefeitura/index.php?p=ramaisEx");
+        exit;
     }
 }
 
@@ -47,3 +59,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller->create($ramaisEx, $ramaisExDao);
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+    if (isset($_GET['idDelete'])) {
+        $controller = new ControlerRamaisEx($_POST);
+        $ramaisEx = new RamaisEx();
+        $ramaisExDao = new RamaisExDao();
+        $idDelete = $_GET['idDelete'];
+        $controller->delete($ramaisEx, $ramaisExDao, $idDelete);
+    } elseif (isset($_GET['idUpdate'])) {
+        $controller = new ControlerRamaisEx($_GET);
+        $ramaisEx = new RamaisEx();
+        $ramaisExDao = new RamaisExDao();
+        $idUpdate = $_GET['idUpdate'];
+        $controller->update($ramaisEx, $ramaisExDao, $idUpdate);
+    }
+}

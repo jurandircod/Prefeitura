@@ -12,7 +12,6 @@ class ControlerRamaisIn
     private $responsavel;
     private $setor;
     private $idLocais;
-    private $error;
 
     public function __construct($arrayPost)
     {
@@ -40,6 +39,15 @@ class ControlerRamaisIn
             $this->error = "Nome e setor não podem ser vazios";
         
     }
+
+    public function delete(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao, $id)
+    {
+        $ramaisEx->setId($id);
+        $ramaisExDao->delete($ramaisEx);
+        header("Location: /prefeitura/index.php?p=ramaisEx");
+        exit;
+    }
+
 }
 
 // Verifica se é uma requisição POST antes de instanciar e chamar o método create()
@@ -50,3 +58,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller->create($ramaisIn, $ramaisInDao);
 }
 
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+    if (isset($_GET['idDelete'])) {
+        $controller = new ControlerRamaisEx($_POST);
+        $ramaisEx = new RamaisEx();
+        $ramaisExDao = new RamaisExDao();
+        $idDelete = $_GET['idDelete'];
+        $controller->delete($ramaisEx, $ramaisExDao, $idDelete);
+    } elseif (isset($_GET['idUpdate'])) {
+        $controller = new ControlerRamaisEx($_GET);
+        $ramaisEx = new RamaisEx();
+        $ramaisExDao = new RamaisExDao();
+        $idUpdate = $_GET['idUpdate'];
+        $controller->update($ramaisEx, $ramaisExDao, $idUpdate);
+    }
+}
