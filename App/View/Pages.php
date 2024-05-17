@@ -1,4 +1,5 @@
 <?php
+
 namespace App\View;
 
 
@@ -13,20 +14,10 @@ class Pages
    {
       include('Cadastrar/Locais.php');
    }
-
    private function cadastrarRamaisEx()
    {
-      $ramaisEx = new \App\Model\RamaisEx\RamaisEx;
-      $ramaisExDao = new \App\Model\RamaisEx\RamaisExDao;
-      
-
-      $sql = "SELECT * FROM tbramais_ex";
-      $ramaisExDao->setSqlRead($sql);
-      $listaRamais = $ramaisExDao->read();
       include('Cadastrar/RamaisEx.php');
-   
    }
-
    private function cadastrarRamaisIn()
    {
       include('Cadastrar/RamaisIn.php');
@@ -44,42 +35,41 @@ class Pages
 
    private function mostrarSearch()
    {
-
-      $ramaisEx = new \App\Model\RamaisEx\RamaisEx;
-      $ramaisExDao = new \App\Model\RamaisEx\RamaisExDao;
-      
-      $sql = "SELECT * FROM tbramais_ex";
-      $ramaisExDao->setSqlRead($sql);
-      $listaRamais = $ramaisExDao->read();
-      include('Cadastrar/Search.php');
+      include('Search.php');
    }
 
-   public function mostrarCadastramento($pages){
-      
+   private function mostrarRamaisIn()
+   {
+      include('ramaisIn.php');
+   }
+
+   public function mostrarCadastramento($pages)
+   {
       switch ($pages) {
-         
          case "locais":
-             $this->cadastrarLocais();
-             break;
+            $this->cadastrarLocais();
+            break;
          case "ramaisIn":
-             $this->cadastrarRamaisIn();
-             break;
+            $this->cadastrarRamaisIn();
+            break;
          case "ramaisEx":
-             $this->cadastrarRamaisEx();
-             break;
+            $this->cadastrarRamaisEx();
+            break;
          case "secretaria":
-             $this->cadastrarSecretaria();
-             break;
+            $this->cadastrarSecretaria();
+            break;
          case "usuario":
-             $this->cadastrarUsuario();
-             break;
+            $this->cadastrarUsuario();
+            break;
          case "search":
-             $this->mostrarSearch();
-             break;
+            $this->mostrarSearch();
+            break;
+         case "ramaisInSearch":
+            $this->mostrarSearch();
+            break;
          default:
-             $this->mostrarSearch();
-             break;
-     }
+            $this->mostrarRamaisIn();
+            break;
+      }
    }
-
 }

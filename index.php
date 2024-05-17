@@ -64,7 +64,8 @@ $pages = new \App\View\Pages;
                 <li class="nav-item">
 
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="login.php" class="nav-link">Logar</a>
+                    
+                    <a href="login.php" class="nav-link"><i class="bi bi-person-circle ml-3"></i>Logar</a>
                 </li>
                 </li>
 
@@ -93,18 +94,27 @@ $pages = new \App\View\Pages;
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="index.php?p=search" class="nav-link">
-                                <i class="nav-icon fas fa-search"></i>
+                            <i class="nav-icon fas fa-solid fa-phone-volume"></i>
                                 <p>
-                                    Todos os Telefones
+                                    Ramais Externos
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="index.php?p=search" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-list"></i>
+                            <a href="index.php?p=ramaisInSearch" class="nav-link">
+                            <i class="nav-icon fas fa-solid fa-phone"></i>
                                 <p>
-                                    Todos os locais
+                                    Ramais Internos
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="index.php?p=todosLocais" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-list"></i>
+                                <p>
+                                    Locais
                                 </p>
                             </a>
                         </li>
@@ -237,7 +247,14 @@ $pages = new \App\View\Pages;
     <!-- AdminLTE for demo purposes -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
-    <script src="dist/js/ajax/search.js"></script>
+
+
+    <?php if ($_GET['p'] == "search") : ?>
+        <script src="dist/js/ajax/search.js"></script>
+    <?php elseif ($_GET['p'] == "ramaisInSearch") : ?>
+        <script src="dist/js/ajax/ramaisInSearch.js"></script>
+    <?php endif; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>

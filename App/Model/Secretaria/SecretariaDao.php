@@ -38,7 +38,6 @@ class SecretariaDao extends Read
     public function delete($id)
     {
 
-
         $stmt = Conexao::getConn()->beginTransaction();
         $sql = "DELETE FROM tbramais_in WHERE fklocais IN (SELECT id FROM tblocais WHERE fksecretarias = :id_secretaria)";
 

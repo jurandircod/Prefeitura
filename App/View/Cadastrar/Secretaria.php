@@ -16,7 +16,7 @@ $secretaria->setSqlRead("SELECT * FROM tbsecretarias");
                     <div class="">
                         <label>Nome da Secretaria</label>
                         <div class="input-group date">
-                            <input type="text" name="secretariaNome" class="form-control" />
+                            <input type="text" name="secretariaNome" class="form-control" placeholder="Insira o nome da Secretaria" />
                             <div class="input-group-append">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
