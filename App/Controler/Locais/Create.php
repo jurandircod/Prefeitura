@@ -36,8 +36,6 @@ class LocaisControler
         $locais->setBairro($this->bairro);
         $locais->setNumero($this->numero);
         $locais->setFkSecretaria($this->idSecretaria);
-        die();
-        var_dump($locais);
         $locaisDao->create($locais);
         // Redirecionamento para uma rota dentro do servidor
         header("Location: /prefeitura/index.php?p=locais");
@@ -45,13 +43,52 @@ class LocaisControler
 
         $this->error = "Nome e setor não podem ser vazios";
     }
+
+    public function delete(Locais $locais, LocaisDao $locaisDao, $id)
+    {
+        $locais->setId($id);
+        $locaisDao->delete($locais);
+        header("Location: /prefeitura/index.php?p=locais");
+        exit;
+    }
+
+    public function update(Locais $locais, LocaisDao $locaisDao, $id)
+    {
+        $locais->setId($id);
+        $locais->setNome($this->nome);
+        $locais->setDescricao($this->descricao);
+        $locais->setRua($this->rua);
+        $locais->setBairro($this->bairro);
+        $locais->setNumero($this->numero);
+        $locais->setFkSecretaria($this->idSecretaria);
+        $locaisDao->update($locais);
+        header("Location: /prefeitura/index.php?p=locais");
+        exit;
+    }
 }
+
 
 // Verifica se é uma requisição POST antes de instanciar e chamar o método create()
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new LocaisControler($_POST);
     $locais = new Locais();
     $locaisDao = new LocaisDao();
-    
     $controller->create($locais, $locaisDao);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+    if (isset($_GET['idDelete'])) {
+        $controller = new LocaisControler($_GET);
+        $locais = new Locais();
+        $locaisDao = new LocaisDao();
+        $idDelete = $_GET['idDelete'];
+        $controller->delete($locais, $locaisDao, $idDelete);
+    } elseif (isset($_GET['idUpdate'])) {
+        $controller = new LocaisControler($_GET);
+        $locais = new Locais();
+        $locaisDao = new LocaisDao();
+        $idUpdate = $_GET['idUpdate'];
+        $controller->update($locais, $locaisDao, $idUpdate);
+    }
 }

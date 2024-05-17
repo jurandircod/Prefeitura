@@ -32,6 +32,7 @@ $pages = new \App\View\Pages;
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="shortcut icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/6a/4b/6e/6a4b6ecd-668b-abe5-4eff-58a16ecab229/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" type="image/x-icon">
 </head>
@@ -90,8 +91,6 @@ $pages = new \App\View\Pages;
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
-
                         <li class="nav-item">
                             <a href="index.php?p=search" class="nav-link">
                                 <i class="nav-icon fas fa-search"></i>
@@ -103,22 +102,12 @@ $pages = new \App\View\Pages;
 
                         <li class="nav-item">
                             <a href="index.php?p=search" class="nav-link">
-                                <i class="nav-icon fas fa-search"></i>
+                            <i class="nav-icon fas fa-solid fa-list"></i>
                                 <p>
-                                    Ramais Externos
+                                    Todos os locais
                                 </p>
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a href="index.php?p=search" class="nav-link">
-                                <i class="nav-icon fas fa-search"></i>
-                                <p>
-                                    Ramais Internos
-                                </p>
-                            </a>
-                        </li>
-
 
                         <li class="nav-item">
                             <a href="index.php" class="nav-link">

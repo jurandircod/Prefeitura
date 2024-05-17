@@ -21,14 +21,23 @@ class ControlerRamaisEx
 
     public function create(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao)
     {
-
-        $ramaisEx->setNome($this->nome);
-        $ramaisEx->setNumero($this->numero);
-        $ramaisEx->setSetor($this->setor);
-        $ramaisExDao->create($ramaisEx);
-        // Redirecionamento para uma rota dentro do servidor
-        header("Location: /prefeitura/index.php?p=ramaisEx");
-        exit; // Termina o script após o redirecionamento
+        if ($this->nome != NULL) {
+            $ramaisEx->setNome($this->nome);
+            $ramaisEx->setNumero($this->numero);
+            $ramaisEx->setSetor($this->setor);
+            $ramaisExDao->create($ramaisEx);
+            // Redirecionamento para uma rota dentro do servidor
+            header("Location: /prefeitura/index.php?p=ramaisEx");
+            exit; // Termina o script após o redirecionamento
+        } else {
+            $ramaisEx->setNome("A definir");
+            $ramaisEx->setNumero($this->numero);
+            $ramaisEx->setSetor($this->setor);
+            $ramaisExDao->create($ramaisEx);
+            // Redirecionamento para uma rota dentro do servidor
+            header("Location: /prefeitura/index.php?p=ramaisEx");
+            exit;
+        }
     }
 
     public function delete(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao, $id)
@@ -41,13 +50,23 @@ class ControlerRamaisEx
 
     public function update(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao, $id)
     {
-        $ramaisEx->setId($id);
-        $ramaisEx->setNome($this->nome);
-        $ramaisEx->setNumero($this->numero);
-        $ramaisEx->setSetor($this->setor);
-        $ramaisExDao->update($ramaisEx);
-        header("Location: /prefeitura/index.php?p=ramaisEx");
-        exit;
+        if ($this->nome != NULL) {
+            $ramaisEx->setId($id);
+            $ramaisEx->setNome($this->nome);
+            $ramaisEx->setNumero($this->numero);
+            $ramaisEx->setSetor($this->setor);
+            $ramaisExDao->update($ramaisEx);
+            header("Location: /prefeitura/index.php?p=ramaisEx");
+            exit;
+        } else {
+            $ramaisEx->setId($id);
+            $ramaisEx->setNome("A definir");
+            $ramaisEx->setNumero($this->numero);
+            $ramaisEx->setSetor($this->setor);
+            $ramaisExDao->update($ramaisEx);
+            header("Location: /prefeitura/index.php?p=ramaisEx");
+            exit;
+        }
     }
 }
 

@@ -1,3 +1,17 @@
+<?php
+
+use App\Model\Locais\LocaisDao;
+use App\Model\RamaisIn\RamaisInDao;
+
+$locaisObj = new LocaisDao();
+$locaisObj->setSqlRead("SELECT id, nome FROM tblocais");
+
+$ramaisIn = new RamaisInDao;
+$ramaisIn->setSqlRead("SELECT * FROM tbramais_in");
+
+$locaisLista = new LocaisDao;
+?>
+
 <div clas="container-fluid">
     <div class="col-md-12 mt-3">
         <div class="card card-primary">
@@ -7,20 +21,20 @@
             <div class="card-body">
                 <!-- Date -->
                 <form class="form-group" action="App/Controler/RamaisIn/Create.php" method="post">
-                    
-                        <label>Responsavel</label>
-                        <div class="input-group date">
-                            <input type="text" name="ramaisInResponsavel" class="form-control" />
-                            <div class="input-group-append">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
+
+                    <label>Responsavel</label>
+                    <div class="input-group date">
+                        <input type="text" name="ramaisInResponsavel" class="form-control" placeholder="Responsável pelo setor" />
+                        <div class="input-group-append">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
-                    
+                    </div>
+
                     <div class="row">
                         <div class="col">
                             <label>Numero</label>
                             <div class="input-group date">
-                                <input type="text" name="ramaisInNumero" class="form-control" />
+                                <input type="text" name="ramaisInNumero" class="form-control" placeholder="Digite o Numero para contato" />
                                 <div class="input-group-append">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -29,7 +43,7 @@
                         <div class="col">
                             <label>Setor</label>
                             <div class="input-group date">
-                                <input type="text" name="ramaisInSetor" class="form-control" />
+                                <input type="text" name="ramaisInSetor" class="form-control" placeholder="Digite o nome do Setor" />
                                 <div class="input-group-append">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -39,7 +53,11 @@
                         <div class="col">
                             <label>Locais</label>
                             <div class="input-group date">
-                                <input type="text" name="ramaisInIdLocais" class="form-control" />
+                                <select class="form-control" name="ramaisInIdLocais" id="">
+                                    <?php foreach ($locaisObj->read() as $locais) : ?>
+                                        <option value="<?php echo $locais['id'] ?>"><?php echo $locais['nome'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                                 <div class="input-group-append">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -65,4 +83,159 @@
 
 </div>
 <!-- /.card -->
+<div clas="container-fluid">
+    <!-- /.card -->
+    <div>
+
+        <div class="">
+            <div class="col-12">
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Listar Ramais Internos</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Responsavel</th>
+                                    <th>Numero</th>
+                                    <th>setor</th>
+                                    <th>Locais</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                foreach ($ramaisIn->read() as $rowRamaisIn) : ?>
+                                    <?php
+                                    $locaisLista->setSqlRead("SELECT * FROM tblocais WHERE id = $rowRamaisIn[fklocais]");
+                                    $nomeLocais = $locaisLista->read();
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $rowRamaisIn['responsavel']; ?></td>
+                                        <td><?php echo $rowRamaisIn['numero']; ?></td>
+                                        <td><?php echo $rowRamaisIn['setor']; ?></td>
+                                        <td><?php echo $nomeLocais[0]['nome']; ?></td>
+                                        <td>
+                                            <div class="col">
+                                                <a onclick="pegarId('<?php echo $rowRamaisIn['id']; ?>', '<?php echo $rowRamaisIn['responsavel']; ?>',  '<?php echo $rowRamaisIn['numero'] ?>', '<?php echo $rowRamaisIn['setor']; ?>')" class="btn btn-sm btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    <i class="fas fa-comments"></i>Alterar Local
+                                                </a>
+
+                                                <a onclick="confirmarExclusao('<?php echo $rowRamaisIn['id']; ?>')" class="btn btn-sm btn-danger mt-1">
+                                                    <i class="fas fa-comments"></i>Excluir Local
+                                                </a>
+
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Responsavel</th>
+                                    <th>Numero</th>
+                                    <th>setor</th>
+                                    <th>Locais</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+    <!-- iCheck -->
+</div>
+
+
+
+
+
+<script>
+    var comfirmacao;
+
+    function confirmarExclusao(id) {
+        confirmacao = window.confirm("Tem certeza que deseja excluir o loca");
+        console.log(id)
+        if (confirmacao == true) {
+            location.href = "App/Controler/RamaisIn/Create.php?idDelete=" + id;
+        }
+    }
+
+
+
+    function pegarId(id, Responsavel, numero, setor, Locais) {
+        console.log(id, Responsavel, numero, setor, Locais);
+        document.getElementById('id').value = id; // Usar 'value' em vez de 'innerText'
+        document.getElementById("Responsavel").value = Responsavel;
+        document.getElementById("numero").value = numero;
+        document.getElementById("setor").value = setor;
+        document.getElementById("Locais").value = Locais;
+
+    }
+</script>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar nome do local</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="App/Controler/Locais/Create.php" method="get">
+                    <div>
+                        <input type="text" id="id" name="idUpdate" hidden>
+                    </div>
+
+                    <div class="name mt-3">
+                        <label for="inputEmail4" class="form-label">Nome</label>
+                        <input type="text" id="nome" name="locaisNome" class="form-control" placeholder="Digite seu nome completo" id="">
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <div class="col">
+                            <label for="">Rua</label>
+                            <input class="form-control" id="rua" type="text" name="locaisRua" placeholder="Endereço*">
+                        </div>
+
+                        <div class="col">
+                            <label for="">Bairro</label>
+                            <input type="text" class="form-control" id="bairro" name="locaisBairro" placeholder="Digite o telefone do local">
+                        </div>
+
+                        <div class="col">
+                            <label for="">Numero</label>
+                            <input type="text" class="form-control" id="numero" name="locaisNumero" placeholder="Digite o telefone do local">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Secretaria</label>
+                        <select class="form-control" name="ramaisIdLocais" id="">
+                            <?php foreach ($locaisObj->read() as $locais) : ?>
+                                <option value="<?php echo $locais['id'] ?>"><?php echo $locais['nome'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary ">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </div>

@@ -34,7 +34,7 @@ class RamaisInDao extends Read
 
     public function delete(RamaisIn $ramaisIn)
     {
-        $this->sql = "DELETE tbramais_in WHERE id = ?";
+        $this->sql = "DELETE FROM tbramais_in WHERE id = ?";
         $stmt = Conexao::getConn()->prepare($this->sql);
         $stmt->bindValue(1, $ramaisIn->getId());
         $this->executeStatement($stmt);

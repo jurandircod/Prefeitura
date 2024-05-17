@@ -58,11 +58,11 @@ $secretaria->setSqlRead("SELECT * FROM tbsecretarias");
 
                                         <td>
                                             <div class="col">
-                                                <a class="btn btn-sm btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                <a onclick="pegarId('<?php echo $rowsSecretaria['id']; ?>', '<?php echo $rowsSecretaria['nome']; ?>')" class="btn btn-sm btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                     <i class="fas fa-comments"></i>Alterar Local
                                                 </a>
 
-                                                <a class="btn btn-sm btn-danger mt-1">
+                                                <a onclick="confirmarExclusao('<?php echo $rowsSecretaria['id']; ?>')" class="btn btn-sm btn-danger mt-1">
                                                     <i class="fas fa-comments"></i>Excluir Local
                                                 </a>
 
@@ -93,5 +93,72 @@ $secretaria->setSqlRead("SELECT * FROM tbsecretarias");
 <!-- /.card -->
 
 
+
+<script>
+    var comfirmacao;
+
+    function confirmarExclusao(id) {
+        confirmacao = window.confirm("Tem certeza que deseja excluir o loca");
+        console.log(id)
+        if (confirmacao == true) {
+            location.href = "App/Controler/Secretaria/Create.php?idDelete=" + id;
+        }
+    }
+
+
+
+    function pegarId(id, nome, numero, setor) {
+        console.log(id, nome, numero, setor);
+        document.getElementById('id').value = id; // Usar 'value' em vez de 'innerText'
+        document.getElementById("nome").value = nome;
+        document.getElementById("numero").value = numero;
+        document.getElementById("setor").value = setor;
+
+    }
+
+</script>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar nome do local</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="App/Controler/RamaisEx/Create.php" method="get">
+                    <div>
+                        <input type="text" id="id" name="idUpdate" hidden>
+                    </div>
+
+                    <div class="name mt-3">
+                        <label for="inputEmail4" class="form-label">Nome</label>
+                        <input type="text" id="nome" name="ramaisExNome" class="form-control" placeholder="Digite seu nome completo" id="">
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <div class="col">
+                            <label for="">Numero</label>
+                            <input class="form-control" id="numero" type="text" name="ramaisExNumero" placeholder="Endereço*">
+                        </div>
+
+                        <div class="col">
+                            <label for="">Setor</label>
+                            <input type="text" class="form-control" id="setor" name="ramaisExSetor" placeholder="Digite o telefone do local">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary ">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- /.row -->

@@ -29,6 +29,23 @@ class ControlerSecretaria
             $this->error = "Nome e setor não podem ser vazios";
         
     }
+
+    public function update(Secretaria $secretaria, SecretariaDao $secretariaDao, $id)
+    {
+        $secretaria->setId($id);
+        $secretaria->setNome($this->nome);
+        $secretariaDao->update($secretaria);
+        header("Location: /prefeitura/index.php?p=secretaria");
+        exit;
+    }
+
+    public function delete(Secretaria $secretaria, SecretariaDao $secretariaDao, $id)
+    {
+        $secretaria->setId($id);
+        $secretariaDao->delete($secretaria->getId());
+        header("Location: /prefeitura/index.php?p=secretaria");
+        exit;
+    }
 }
 
 // Verifica se é uma requisição POST antes de instanciar e chamar o método create()
@@ -37,5 +54,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $secretaria = new Secretaria();
     $secretariaDao = new SecretariaDao();
     $controller->create($secretaria, $secretariaDao);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+    if (isset($_GET['idDelete'])) {
+        $controller = new ControlerSecretaria($_GET);
+        $secretaria = new Secretaria();
+        $secretariaDao = new SecretariaDao();
+        $idDelete = $_GET['idDelete'];
+        $controller->delete($secretaria, $secretariaDao, $idDelete);
+    } elseif (isset($_GET['idUpdate'])) {
+        $controller = new ControlerSecretaria($_GET);
+        $secretaria = new Secretaria();
+        $secretariaDao = new SecretariaDao();
+        $idUpdate = $_GET['idUpdate'];
+        $controller->update($secretaria, $secretariaDao, $idUpdate);
+    }
 }
 

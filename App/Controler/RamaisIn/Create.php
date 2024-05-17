@@ -25,8 +25,6 @@ class ControlerRamaisIn
 
     public function create(RamaisIn $ramaisIn, RamaisInDao $ramaisInDao)
     {
-
-        
             $ramaisIn->setNumero($this->numero);
             $ramaisIn->setResponsavel($this->responsavel);
             $ramaisIn->setfkLocais($this->idLocais);
@@ -36,15 +34,26 @@ class ControlerRamaisIn
             header("Location: /prefeitura/index.php?p=ramaisIn");
             exit; // Termina o script após o redirecionamento
         
-            $this->error = "Nome e setor não podem ser vazios";
-        
     }
 
-    public function delete(RamaisEx $ramaisEx, RamaisExDao $ramaisExDao, $id)
+    public function update(RamaisIn $ramaisIn, RamaisInDao $ramaisInDao, $id)
     {
-        $ramaisEx->setId($id);
-        $ramaisExDao->delete($ramaisEx);
-        header("Location: /prefeitura/index.php?p=ramaisEx");
+        $ramaisIn->setId($id);
+        $ramaisIn->setResponsavel($this->responsavel);
+        $ramaisIn->setNumero($this->numero);
+        $ramaisIn->setSetor($this->setor);
+        $ramaisIn->setfkLocais($this->idLocais);
+        $ramaisInDao->update($ramaisIn);
+        header("Location: /prefeitura/index.php?p=ramaisIn");
+        exit;
+    }
+
+    public function delete(RamaisIn $ramaisIn, RamaisInDao $ramaisInDao, $id)
+    {
+        $ramaisIn->setId($id);
+        $ramaisInDao->delete($ramaisIn);
+        
+        header("Location: /prefeitura/index.php?p=ramaisIn");
         exit;
     }
 
@@ -62,16 +71,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     if (isset($_GET['idDelete'])) {
-        $controller = new ControlerRamaisEx($_POST);
-        $ramaisEx = new RamaisEx();
-        $ramaisExDao = new RamaisExDao();
+        $controller = new ControlerRamaisIn($_GET);
+        $ramaisIn = new ramaisIn();
+        $ramaisInDao = new ramaisInDao();
         $idDelete = $_GET['idDelete'];
-        $controller->delete($ramaisEx, $ramaisExDao, $idDelete);
+        $controller->delete($ramaisIn, $ramaisInDao, $idDelete);
     } elseif (isset($_GET['idUpdate'])) {
-        $controller = new ControlerRamaisEx($_GET);
-        $ramaisEx = new RamaisEx();
-        $ramaisExDao = new RamaisExDao();
+        $controller = new ControlerRamaisIn($_GET);
+        $ramaisIn = new ramaisIn();
+        $ramaisInDao = new ramaisInDao();
         $idUpdate = $_GET['idUpdate'];
-        $controller->update($ramaisEx, $ramaisExDao, $idUpdate);
+        $controller->update($ramaisIn, $ramaisInDao, $idUpdate);
     }
 }
