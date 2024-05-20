@@ -6,7 +6,7 @@ use App\Model\Conexao;
 class PDF extends FPDF {
     // Cabeçalho do documento
     function Header() {
-        $this->SetFont('Arial', 'B', 12);
+        $this->SetFont('Arial', 'B', 14);
         $this->Cell(0, 10, 'Titulo do Relatorio', 0, 1, 'C');
         $this->Ln(10);
     }
@@ -38,11 +38,44 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 12);
 
-foreach ($usuarios as $usuario) {
-    $pdf->Cell(0, 10, 'Nome: ' . $usuario['nome'], 0, 1);
-    $pdf->Cell(0, 10, 'numero: ' . $usuario['numero'], 0, 1);
-    $pdf->Cell(0, 10, 'setor: ' . $usuario['setor'], 0, 1);
-    $pdf->Ln(5);
+// Função para desenhar uma célula formatada
+function drawCell($pdf, $x, $y, $w, $h, $txt, $border = 1, $align = 'L') {
+    $pdf->SetXY($x, $y);
+    $pdf->Cell($w, $h, $txt, $border, 0, $align);
+}
+
+$x = 10;
+$y = $pdf->GetY();
+$w = 90; // Largura de cada coluna
+$h = 10; // Altura de cada célula
+$colCount = 0;
+filter_input(INPUT_GET, 'ajax', FILTER_SANITIZE_STRING); 
+foreach ($usuarios as $index => $usuario) {
+    
+    $usuarioNome = filter_input(INPUT_GET, $usuario['nome'], FILTER_SANITIZE_STRING);
+    // Coluna esquerda
+    drawCell($pdf, $x, $y, $w, $h, 'Nome: ' . $usuarioNome);
+    drawCell($pdf, $x, $y + $h, $w, $h, 'Numero: ' . $usuario['numero']);
+    drawCell($pdf, $x, $y + 2 * $h, $w, $h, 'Setor: ' . $usuario['setor']);
+
+    if ($colCount == 0) {
+        // Próxima coluna
+        $x += $w;
+        $colCount++;
+    } else {
+        // Nova linha
+        $x = 10;
+        $y += 3 * $h + 5;
+        $colCount = 0;
+    }
+
+    // Se estamos na última linha da página, adiciona uma nova página
+    if ($y + 3 * $h > $pdf->GetPageHeight() - 20) {
+        $pdf->AddPage();
+        $x = 10;
+        $y = $pdf->GetY();
+        $colCount = 0;
+    }
 }
 
 $pdf->Output('D', 'relatorio.pdf');
