@@ -5,10 +5,6 @@ namespace App\View;
 
 class Pages
 {
-   private $locais;
-   private $ramaisEx;
-   private $ramaisIn;
-   private $secretaria;
 
    private function cadastrarLocais()
    {
@@ -35,12 +31,12 @@ class Pages
 
    private function mostrarSearch()
    {
-      include('Search.php');
+      include('RamaisEx.php');
    }
 
    private function mostrarRamaisIn()
    {
-      include('ramaisIn.php');
+      include('RamaisIn.php');
    }
 
    public function mostrarCadastramento($pages)
@@ -61,6 +57,20 @@ class Pages
          case "usuario":
             $this->cadastrarUsuario();
             break;
+         case "search":
+            $this->mostrarSearch();
+            break;
+         case "ramaisInSearch":
+            $this->mostrarSearch();
+            break;
+         default:
+            $this->mostrarRamaisIn();
+            break;
+      }
+   }
+
+   public function mostrarBuscadores($pages){
+      switch($pages){
          case "search":
             $this->mostrarSearch();
             break;

@@ -3,7 +3,7 @@
 <?php
 require_once 'vendor/autoload.php';
 $pages = new \App\View\Pages;
-
+session_start();
 ?>
 
 <head>
@@ -64,8 +64,11 @@ $pages = new \App\View\Pages;
                 <li class="nav-item">
 
                 <li class="nav-item d-none d-sm-inline-block">
-                    
-                    <a href="login.php" class="nav-link"><i class="bi bi-person-circle ml-3"></i>Logar</a>
+                    <?php if (!isset($_SESSION['nomeUsuario'])) : ?>
+                        <a href="login.php" class="nav-link"><i class="nav-icon bi bi-person-circle"></i>Logar</a>
+                    <?php else : ?>
+                        <a href="logout.php" class="nav-link"><i class="nav-icon bi bi-person-circle"></i>Sair</a>
+                    <?php endif; ?>
                 </li>
                 </li>
 
@@ -94,7 +97,7 @@ $pages = new \App\View\Pages;
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="index.php?p=search" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-phone-volume"></i>
+                                <i class="nav-icon fas fa-solid fa-phone-volume"></i>
                                 <p>
                                     Ramais Externos
                                 </p>
@@ -103,7 +106,7 @@ $pages = new \App\View\Pages;
 
                         <li class="nav-item">
                             <a href="index.php?p=ramaisInSearch" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-phone"></i>
+                                <i class="nav-icon fas fa-solid fa-phone"></i>
                                 <p>
                                     Ramais Internos
                                 </p>
@@ -118,51 +121,51 @@ $pages = new \App\View\Pages;
                                 </p>
                             </a>
                         </li>
+                        <?php if (isset($_SESSION['nomeUsuario'])) : ?>
+                            <li class="nav-item">
+                                <a href="index.php" class="nav-link">
+                                    <i class="nav-icon fas fa-plus"></i>
+                                    <p>
+                                        Cadastrar
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
 
-                        <li class="nav-item">
-                            <a href="index.php" class="nav-link">
-                                <i class="nav-icon fas fa-plus"></i>
-                                <p>
-                                    Cadastrar
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item ml-1">
+                                        <a href="index.php?p=locais" class="nav-link">
+                                            <i class="nav-icon fas fa-solid fa-street-view"></i>
+                                            <p>Cadastrar Locais</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-1">
+                                        <a href="index.php?p=secretaria" class="nav-link">
+                                            <i class="nav-icon fas fa-solid fa-globe"></i>
+                                            <p>Cadastrar Secretaria</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-1">
+                                        <a href="index.php?p=ramaisEx" class="nav-link">
+                                            <i class="nav-icon fas fa-solid fa-phone-volume"></i>
+                                            <p>Cad Ramais Externos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-1">
+                                        <a href="index.php?p=ramaisIn" class="nav-link">
+                                            <i class="nav-icon fas fa-solid fa-phone"></i>
+                                            <p>Cad Ramais Internos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-1">
+                                        <a href="index.php?p=usuarios" class="nav-link">
+                                            <i class="nav-icon fas fa-solid fa-users"></i>
+                                            <p>Cadastrar Usuario</p>
+                                        </a>
+                                    </li>
+                                </ul>
 
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="index.php?p=locais" class="nav-link">
-                                        <i class=""></i>
-                                        <p>Cadastrar Locais</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index.php?p=secretaria" class="nav-link">
-                                        <i class=""></i>
-                                        <p>Cadastrar Secretaria</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index.php?p=ramaisEx" class="nav-link">
-                                        <i class=""></i>
-                                        <p>Cadastrar Ramais Externos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index.php?p=ramaisIn" class="nav-link">
-                                        <i class=""></i>
-                                        <p>Cadastrar Ramais Internos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index.php?p=usuarios" class="nav-link">
-                                        <i class=""></i>
-                                        <p>Cadastrar Usuario</p>
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </li>
-
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -175,7 +178,11 @@ $pages = new \App\View\Pages;
             <!-- Content Header (Page header) -->
 
             <?php
-            $pages->mostrarCadastramento(@$_GET['p']);
+            if (!isset($_SESSION['nomeUsuario'])) {
+                $user = $pages->mostrarBuscadores(@$_GET['p']);
+            } else {
+                $user = $pages->mostrarCadastramento(@$_GET['p']);
+            }
             ?>
 
             <!-- /.content -->
@@ -249,9 +256,9 @@ $pages = new \App\View\Pages;
     <script src="dist/js/pages/dashboard.js"></script>
 
 
-    <?php if ($_GET['p'] == "search") : ?>
+    <?php if (@$_GET['p'] == "search" or @$_GET['p'] == "") : ?>
         <script src="dist/js/ajax/search.js"></script>
-    <?php elseif ($_GET['p'] == "ramaisInSearch") : ?>
+    <?php elseif (@$_GET['p'] == "ramaisInSearch") : ?>
         <script src="dist/js/ajax/ramaisInSearch.js"></script>
     <?php endif; ?>
 

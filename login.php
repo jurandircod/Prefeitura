@@ -24,9 +24,9 @@
     <div class="card-body">
       <p class="login-box-msg">Conecte-se caso não tenha acesso contatar o admin</p>
 
-      <form action="index3.html" method="post">
+      <form action="App/Controler//Usuario//Create.php" method="get">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" name="usuarioNome" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="usuarioSenha" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
