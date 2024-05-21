@@ -114,7 +114,7 @@ session_start();
                         </li>
 
                         <li class="nav-item">
-                            <a href="index.php?p=todosLocais" class="nav-link">
+                            <a href="index.php?p=locaisSearch" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-list"></i>
                                 <p>
                                     Locais
@@ -260,8 +260,9 @@ session_start();
         <script src="dist/js/ajax/search.js"></script>
     <?php elseif (@$_GET['p'] == "ramaisInSearch") : ?>
         <script src="dist/js/ajax/ramaisInSearch.js"></script>
-    <?php endif; ?>
-
+    <?php elseif(@$_GET['p'] == "locaisSearch"): ?>
+        <script src="dist/js//ajax//locais.js"></script>
+        <?php endif?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
