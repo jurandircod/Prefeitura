@@ -52,8 +52,8 @@ function mostrarResultados(resultados) {
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="lead">Local: <b>${resultado.locaisNome}</b></h2>
-                                <h4 class="lead">Secretaria: <b>${resultado.secretariaNome}</b></h4>
+                                <h2 class="lead"><b>${resultado.secretariaNome}</b></h2>
+                                <p class="text-muted text-sm"><b>Setor:</b>${resultado.locaisNome}</p>
                                 <p class="text-muted text-sm"><b>Endereço:</b>${resultado.rua} ${resultado.bairro} ${resultado.locaisNumero}</p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                     <li class="great"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefone/Ramal: <b>${resultado.ramaisNumero}</b></li>

@@ -12,7 +12,7 @@ class Consultasearch{
 
     public function ramaisEx(){
         
-        $sql = "SELECT * FROM tbramais_ex WHERE nome LIKE ? OR numero LIKE ? OR setor LIKE ?"; //consulta SQL
+        $sql = "SELECT * FROM tbramais_ex WHERE nome LIKE ? OR numero LIKE ? OR setor LIKE ? ORDER BY nome ASC"; //consulta SQL
     try {
         $stmt = Conexao::getConn()->prepare($sql);
         // Bind the search term to all three placeholders

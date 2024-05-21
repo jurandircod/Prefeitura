@@ -10,9 +10,11 @@ class Consultasearch{
         $this->search = $search;
     }
 
-    public function ramaisEx(){
+    public function ramaisIn(){
         
-        $sql = "SELECT * FROM tbramais_in WHERE responsavel LIKE ? OR numero LIKE ? OR setor LIKE ?"; //consulta SQL
+        $sql = "SELECT tblocais.nome, tbramais_in.responsavel, tbramais_in.numero, tbramais_in.setor 
+        FROM tbramais_in JOIN tblocais ON tbramais_in.fklocais = tblocais.id 
+        WHERE tbramais_in.responsavel LIKE ? OR tbramais_in.numero LIKE ? OR tbramais_in.setor LIKE ? ORDER BY tblocais.nome ASC"; //consulta SQL
     try {
         $stmt = Conexao::getConn()->prepare($sql);
         // Bind the search term to all three placeholders
@@ -28,6 +30,7 @@ class Consultasearch{
 
         foreach ($result as $row) {
             $array[] = array(
+                'nome' => $row['nome'],
                 'setor' => $row['setor'],
                 'numero' => $row['numero'],
                 'responsavel' => $row['responsavel']
@@ -43,5 +46,5 @@ class Consultasearch{
 
 $search = filter_input(INPUT_GET, 'ajax', FILTER_SANITIZE_STRING); 
 $result = new Consultasearch($search);
-$result->ramaisEx();
+$result->ramaisIn();
 ?>

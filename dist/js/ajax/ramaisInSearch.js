@@ -51,7 +51,7 @@ function mostrarResultados(resultados) {
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="lead">Secretaria: <b>${resultado.setor}</b></h2>
+                                <h2 class="lead"><b>${resultado.setor} - ${resultado.nome}</b></h2>
                                 <p class="text-muted text-sm"><b>Responsaveis:</b>${resultado.responsavel}</p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                     <li class="great"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Telefone/Ramal: <b>${resultado.numero}</b></li>

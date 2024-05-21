@@ -27,7 +27,9 @@ class Consultasearch{
     JOIN 
         tbramais_in ON tblocais.id = tbramais_in.fklocais
     WHERE 
-        tblocais.nome LIKE ? OR tbsecretarias.nome LIKE ?"; //consulta SQL
+        tblocais.nome LIKE ? OR tbsecretarias.nome LIKE ?
+    ORDER BY tblocais.nome ASC"
+    ; //consulta SQL
     try {
         $stmt = Conexao::getConn()->prepare($sql);
         // Bind the search term to all three placeholders

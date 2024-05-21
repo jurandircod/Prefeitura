@@ -4,7 +4,7 @@ use App\Model\Locais\LocaisDao;
 use App\Model\RamaisIn\RamaisInDao;
 
 $locaisObj = new LocaisDao();
-$locaisObj->setSqlRead("SELECT id, nome FROM tblocais");
+$locaisObj->setSqlRead("SELECT id, nome FROM tblocais ORDER BY nome ASC");
 
 $ramaisIn = new RamaisInDao;
 $ramaisIn->setSqlRead("SELECT * FROM tbramais_in");
@@ -121,7 +121,7 @@ $locaisLista = new LocaisDao;
                                         <td><?php echo $nomeLocais[0]['nome']; ?></td>
                                         <td>
                                             <div class="col">
-                                                <a onclick="pegarId('<?php echo $rowRamaisIn['id']; ?>', '<?php echo $rowRamaisIn['responsavel']; ?>',  '<?php echo $rowRamaisIn['numero'] ?>', '<?php echo $rowRamaisIn['setor']; ?>')" class="btn btn-sm btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                <a onclick="pegarId('<?php echo $rowRamaisIn['id']; ?>', '<?php echo $rowRamaisIn['responsavel']; ?>',  '<?php echo $rowRamaisIn['numero'] ?>', '<?php echo $rowRamaisIn['setor']; ?>', '<?php echo $rowRamaisIn['fklocais']; ?>')" class="btn btn-sm btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                     <i class="fas fa-comments"></i>Alterar Local
                                                 </a>
 
@@ -192,37 +192,32 @@ $locaisLista = new LocaisDao;
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="App/Controler/Locais/Create.php" method="get">
+                <form action="App/Controler/RamaisIn/Create.php" method="get">
                     <div>
                         <input type="text" id="id" name="idUpdate" hidden>
                     </div>
 
                     <div class="name mt-3">
-                        <label for="inputEmail4" class="form-label">Nome</label>
-                        <input type="text" id="nome" name="locaisNome" class="form-control" placeholder="Digite seu nome completo" id="">
+                        <label for="inputEmail4" class="form-label">Responsavel</label>
+                        <input type="text" id="Responsavel" name="ramaisInResponsavel" class="form-control" placeholder="Digite seu nome completo" id="">
                     </div>
 
                     <div class="row mt-3">
 
                         <div class="col">
-                            <label for="">Rua</label>
-                            <input class="form-control" id="rua" type="text" name="locaisRua" placeholder="Endereço*">
-                        </div>
-
-                        <div class="col">
-                            <label for="">Bairro</label>
-                            <input type="text" class="form-control" id="bairro" name="locaisBairro" placeholder="Digite o telefone do local">
+                            <label for="">Setor</label>
+                            <input class="form-control" id="setor" type="text" name="ramaisInSetor" placeholder="Endereço*">
                         </div>
 
                         <div class="col">
                             <label for="">Numero</label>
-                            <input type="text" class="form-control" id="numero" name="locaisNumero" placeholder="Digite o telefone do local">
+                            <input type="text" class="form-control" id="numero" name="ramaisInNumero" placeholder="Digite o telefone do local">
                         </div>
                     </div>
 
                     <div class="col">
                         <label for="">Secretaria</label>
-                        <select class="form-control" name="ramaisIdLocais" id="">
+                        <select class="form-control" name="ramaisInIdLocais" id="Locais">
                             <?php foreach ($locaisObj->read() as $locais) : ?>
                                 <option value="<?php echo $locais['id'] ?>"><?php echo $locais['nome'] ?></option>
                             <?php endforeach; ?>
