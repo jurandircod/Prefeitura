@@ -16,7 +16,7 @@ $locaisLista = new LocaisDao;
     <div class="col-md-12 mt-3">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Cadastrar Secretaria</h3>
+                <h3 class="card-title">Cadastrar Ramais Internos</h3>
             </div>
             <div class="card-body">
                 <!-- Date -->
@@ -32,18 +32,18 @@ $locaisLista = new LocaisDao;
 
                     <div class="row">
                         <div class="col">
-                            <label>Numero</label>
+                            <label>Setor</label>
                             <div class="input-group date">
-                                <input type="text" name="ramaisInNumero" class="form-control" placeholder="Digite o Numero para contato" />
+                                <input type="text" name="ramaisInSetor" class="form-control" placeholder="Digite o nome do Setor" />
                                 <div class="input-group-append">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <label>Setor</label>
+                            <label>Numero</label>
                             <div class="input-group date">
-                                <input type="text" name="ramaisInSetor" class="form-control" placeholder="Digite o nome do Setor" />
+                                <input type="text" name="ramaisInNumero" class="form-control" placeholder="Digite o Numero para contato" />
                                 <div class="input-group-append">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -172,13 +172,13 @@ $locaisLista = new LocaisDao;
 
 
 
-    function pegarId(id, Responsavel, numero, setor, Locais) {
-        console.log(id, Responsavel, numero, setor, Locais);
+    function pegarId(id, Responsavel, numero, setor, locais) {
+        console.log(id, Responsavel, numero, setor, locais);
         document.getElementById('id').value = id; // Usar 'value' em vez de 'innerText'
         document.getElementById("Responsavel").value = Responsavel;
         document.getElementById("numero").value = numero;
         document.getElementById("setor").value = setor;
-        document.getElementById("Locais").value = Locais;
+        document.getElementById("locais").value = locais;
 
     }
 </script>
@@ -217,7 +217,7 @@ $locaisLista = new LocaisDao;
 
                     <div class="col">
                         <label for="">Secretaria</label>
-                        <select class="form-control" name="ramaisInIdLocais" id="Locais">
+                        <select class="form-control" name="ramaisInIdLocais" id="locais">
                             <?php foreach ($locaisObj->read() as $locais) : ?>
                                 <option value="<?php echo $locais['id'] ?>"><?php echo $locais['nome'] ?></option>
                             <?php endforeach; ?>

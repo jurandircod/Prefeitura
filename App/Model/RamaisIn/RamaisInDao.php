@@ -22,12 +22,13 @@ class RamaisInDao extends Read
     }
     public function update(RamaisIn $ramaisIn)
     {
-        $sql = 'UPDATE tbramais_in SET numero = ?, responsavel = ?, setor = ? WHERE id = ?';
+        $sql = 'UPDATE tbramais_in SET numero = ?, responsavel = ?, setor = ?, fklocais = ? WHERE id = ?';
         $stmt = Conexao::getConn()->prepare($sql);
         $stmt->bindValue(1, $ramaisIn->getNumero());
         $stmt->bindValue(2, $ramaisIn->getResponsavel());
         $stmt->bindValue(3, $ramaisIn->getSetor());
-        $stmt->bindValue(4, $ramaisIn->getId());
+        $stmt->bindValue(4, $ramaisIn->getFkLocais());
+        $stmt->bindValue(5, $ramaisIn->getId());
         $stmt->execute();
     }
 

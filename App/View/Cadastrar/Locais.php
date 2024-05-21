@@ -266,7 +266,7 @@ $locais->setSqlRead("SELECT * FROM tblocais");
 
                     <div class="col">
                         <label for="">Secretaria</label>
-                        <select class="form-control" name="locaisIdSecretaria" id="">
+                        <select class="form-control" name="locaisIdSecretaria" id="secretaria">
                             <?php foreach ($rowSecretaria as $secretaria) : ?>
                                 <option value="<?php echo $secretaria['id'] ?>"><?php echo $secretaria['nome'] ?></option>
                             <?php endforeach; ?>

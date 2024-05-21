@@ -25,39 +25,37 @@ class ControlerRamaisIn
 
     public function create(RamaisIn $ramaisIn, RamaisInDao $ramaisInDao)
     {
-        if($this->responsavel){
-        $ramaisIn->setNumero($this->numero);
-        $ramaisIn->setResponsavel($this->responsavel);
-        $ramaisIn->setfkLocais($this->idLocais);
-        $ramaisIn->setSetor($this->setor);
-        $ramaisInDao->create($ramaisIn);
-        // Redirecionamento para uma rota dentro do servidor
-        header("Location: /prefeitura/index.php?p=ramaisIn");
-        exit; // Termina o script após o redirecionamento
-        }else {
-        $ramaisIn->setNumero($this->numero);
-        $ramaisIn->setResponsavel("A Definir");
-        $ramaisIn->setfkLocais($this->idLocais);
-        $ramaisIn->setSetor($this->setor);
-        $ramaisInDao->create($ramaisIn);
-        // Redirecionamento para uma rota dentro do servidor
-        header("Location: /prefeitura/index.php?p=ramaisIn");
+        if ($this->responsavel != null) {
+            $ramaisIn->setNumero($this->numero);
+            $ramaisIn->setResponsavel($this->responsavel);
+            $ramaisIn->setfkLocais($this->idLocais);
+            $ramaisIn->setSetor(ucfirst($this->setor));
+            $ramaisInDao->create($ramaisIn);
+            // Redirecionamento para uma rota dentro do servidor
+            header("Location: /prefeitura/index.php?p=ramaisIn");
+            exit; // Termina o script após o redirecionamento
+        } else {
+            $ramaisIn->setNumero($this->numero);
+            $ramaisIn->setResponsavel("A Definir");
+            $ramaisIn->setfkLocais($this->idLocais);
+            $ramaisIn->setSetor(ucfirst($this->setor));
+            $ramaisInDao->create($ramaisIn);
+            // Redirecionamento para uma rota dentro do servidor
+            header("Location: /prefeitura/index.php?p=ramaisIn");
         }
-
     }
 
     public function update(RamaisIn $ramaisIn, RamaisInDao $ramaisInDao, $id)
     {
 
-        
-            $ramaisIn->setId($id);
-            $ramaisIn->setResponsavel($this->responsavel);
-            $ramaisIn->setNumero($this->numero);
-            $ramaisIn->setSetor($this->setor);
-            $ramaisIn->setfkLocais($this->idLocais);
-            $ramaisInDao->update($ramaisIn);
-            header("Location: /prefeitura/index.php?p=ramaisIn");
-        
+
+        $ramaisIn->setId($id);
+        $ramaisIn->setResponsavel($this->responsavel);
+        $ramaisIn->setNumero($this->numero);
+        $ramaisIn->setSetor($this->setor);
+        $ramaisIn->setfkLocais($this->idLocais);
+        $ramaisInDao->update($ramaisIn);
+        header("Location: /prefeitura/index.php?p=ramaisIn");
         exit;
     }
 
