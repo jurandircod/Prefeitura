@@ -47,9 +47,6 @@ class Pages
    public function mostrarCadastramento($pages)
    {
       switch ($pages) {
-         case "locais":
-            $this->cadastrarLocais();
-            break;
          case "ramaisIn":
             $this->cadastrarRamaisIn();
             break;

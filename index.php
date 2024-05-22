@@ -118,15 +118,6 @@ session_start();
                                 </p>
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a href="index.php?p=locaisSearch" class="nav-link">
-                                <i class="nav-icon fas fa-solid fa-list"></i>
-                                <p>
-                                    Locais
-                                </p>
-                            </a>
-                        </li>
                         <?php if (isset($_SESSION['nomeUsuario'])) : ?>
                             <li class="nav-item">
                                 <a href="index.php" class="nav-link">
