@@ -9,7 +9,7 @@ class ControlerSecretaria
 {
     private $id;
     private $nome;
-    private $error;
+    
 
     public function __construct($arrayPost)
     {
@@ -24,9 +24,8 @@ class ControlerSecretaria
             $secretaria->setNome($this->nome);
             $secretariaDao->create($secretaria);
             // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura/index.php?p=secretaria");
+            header("Location: /prefeitura/index.php?p=secretaria&status=1");
             exit; // Termina o script após o redirecionamento   
-            $this->error = "Nome e setor não podem ser vazios";
         
     }
 
@@ -35,7 +34,7 @@ class ControlerSecretaria
         $secretaria->setId($id);
         $secretaria->setNome($this->nome);
         $secretariaDao->update($secretaria);
-        header("Location: /prefeitura/index.php?p=secretaria");
+        header("Location: /prefeitura/index.php?p=secretaria&status=2");
         exit;
     }
 
@@ -43,7 +42,7 @@ class ControlerSecretaria
     {
         $secretaria->setId($id);
         $secretariaDao->delete($secretaria->getId());
-        header("Location: /prefeitura/index.php?p=secretaria");
+        header("Location: /prefeitura/index.php?p=secretaria&status=4");
         exit;
     }
 }

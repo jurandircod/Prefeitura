@@ -39,7 +39,7 @@ class Read
         try{
         
             $stmt->execute();
-        
+            
         }catch(PDOException $e){
             
             die("Erro na consulta: $e");

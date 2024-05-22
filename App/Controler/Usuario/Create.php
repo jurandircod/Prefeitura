@@ -10,7 +10,7 @@ class ControlerUsuario
     private $id;
     private $nome;
     private $senha;
-    private $error;
+    
 
     public function __construct($arrayPost)
     {
@@ -28,8 +28,6 @@ class ControlerUsuario
             // Redirecionamento para uma rota dentro do servidor            
             header("Location: /prefeitura");
             exit; // Termina o script após o redirecionamento   
-            $this->error = "Nome e setor não podem ser vazios";
-        
     }
 
     public function logar(Usuario $usuario, UsuarioDao $usuarioDao)
@@ -39,14 +37,13 @@ class ControlerUsuario
             $result = $usuarioDao->logar($usuario);
             
         if($result == false){
-            header("Location: /prefeitura/login.php?i=1");
+            header("Location: /prefeitura/login.php?&status=3");
         }else{
             header("Location: /prefeitura");
         }
             // Redirecionamento para uma rota dentro do servidor            
             
             exit; // Termina o script após o redirecionamento   
-            $this->error = "Nome e setor não podem ser vazios";
         
     }
 }

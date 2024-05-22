@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h2 class="text-center display-4">Lista de Ramais</h2>
+    <h2 class="text-center display-4">Lista de Ramais Externos</h2>
     <form>
         <div class="row">
             <div class="col-md-12">

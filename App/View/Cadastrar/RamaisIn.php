@@ -7,7 +7,7 @@ $locaisObj = new LocaisDao();
 $locaisObj->setSqlRead("SELECT id, nome FROM tblocais ORDER BY nome ASC");
 
 $ramaisIn = new RamaisInDao;
-$ramaisIn->setSqlRead("SELECT * FROM tbramais_in");
+$ramaisIn->setSqlRead("SELECT tblocais.nome, tbramais_in.id, tbramais_in.fklocais, tbramais_in.responsavel, tbramais_in.numero, tbramais_in.setor FROM tbramais_in JOIN tblocais ON tblocais.id = tbramais_in.fklocais");
 
 $locaisLista = new LocaisDao;
 ?>
@@ -92,7 +92,7 @@ $locaisLista = new LocaisDao;
                 <!-- /.card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Listar Ramais Internos</h3>
+                        <h3 class="card-title">Listar Ramais Externos</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -103,22 +103,20 @@ $locaisLista = new LocaisDao;
                                     <th>Numero</th>
                                     <th>setor</th>
                                     <th>Locais</th>
-
+                                    <th>Funções</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
 
                                 foreach ($ramaisIn->read() as $rowRamaisIn) : ?>
-                                    <?php
-                                    $locaisLista->setSqlRead("SELECT * FROM tblocais WHERE id = $rowRamaisIn[fklocais]");
-                                    $nomeLocais = $locaisLista->read();
-                                    ?>
                                     <tr>
                                         <td><?php echo $rowRamaisIn['responsavel']; ?></td>
                                         <td><?php echo $rowRamaisIn['numero']; ?></td>
                                         <td><?php echo $rowRamaisIn['setor']; ?></td>
-                                        <td><?php echo $nomeLocais[0]['nome']; ?></td>
+                                        <td><?php echo $rowRamaisIn['nome']; ?></td>
+
+
                                         <td>
                                             <div class="col">
                                                 <a onclick="pegarId('<?php echo $rowRamaisIn['id']; ?>', '<?php echo $rowRamaisIn['responsavel']; ?>',  '<?php echo $rowRamaisIn['numero'] ?>', '<?php echo $rowRamaisIn['setor']; ?>', '<?php echo $rowRamaisIn['fklocais']; ?>')" class="btn btn-sm btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -141,6 +139,7 @@ $locaisLista = new LocaisDao;
                                     <th>Numero</th>
                                     <th>setor</th>
                                     <th>Locais</th>
+                                    <th>Funções</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -153,6 +152,7 @@ $locaisLista = new LocaisDao;
         </div>
     </div>
     <!-- iCheck -->
+
 </div>
 
 
@@ -234,3 +234,7 @@ $locaisLista = new LocaisDao;
         </div>
     </div>
 </div>
+
+
+
+

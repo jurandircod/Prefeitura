@@ -38,7 +38,7 @@ class LocaisControler
         $locais->setFkSecretaria($this->idSecretaria);
         $locaisDao->create($locais);
         // Redirecionamento para uma rota dentro do servidor
-        header("Location: /prefeitura/index.php?p=locais");
+        header("Location: /prefeitura/index.php?p=locais&status=1");
         exit; // Termina o script após o redirecionamento
 
         $this->error = "Nome e setor não podem ser vazios";
@@ -48,7 +48,7 @@ class LocaisControler
     {
         $locais->setId($id);
         $locaisDao->delete($locais);
-        header("Location: /prefeitura/index.php?p=locais");
+        header("Location: /prefeitura/index.php?p=locais&status=4");
         exit;
     }
 
@@ -62,7 +62,7 @@ class LocaisControler
         $locais->setNumero($this->numero);
         $locais->setFkSecretaria($this->idSecretaria);
         $locaisDao->update($locais);
-        header("Location: /prefeitura/index.php?p=locais");
+        header("Location: /prefeitura/index.php?p=locais&status=2");
         exit;
     }
 }

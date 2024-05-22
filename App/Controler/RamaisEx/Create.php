@@ -27,7 +27,7 @@ class ControlerRamaisEx
             $ramaisEx->setSetor($this->setor);
             $ramaisExDao->create($ramaisEx);
             // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura/index.php?p=ramaisEx");
+            header("Location: /prefeitura/index.php?p=ramaisEx&status=1");
             exit; // Termina o script após o redirecionamento
         } else {
             $ramaisEx->setNome("A definir");
@@ -35,7 +35,7 @@ class ControlerRamaisEx
             $ramaisEx->setSetor($this->setor);
             $ramaisExDao->create($ramaisEx);
             // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura/index.php?p=ramaisEx");
+            header("Location: /prefeitura/index.php?p=ramaisEx&status=1");
             exit;
         }
     }
@@ -44,7 +44,7 @@ class ControlerRamaisEx
     {
         $ramaisEx->setId($id);
         $ramaisExDao->delete($ramaisEx);
-        header("Location: /prefeitura/index.php?p=ramaisEx");
+        header("Location: /prefeitura/index.php?p=ramaisEx&status=4");
         exit;
     }
 
@@ -56,7 +56,7 @@ class ControlerRamaisEx
             $ramaisEx->setNumero($this->numero);
             $ramaisEx->setSetor($this->setor);
             $ramaisExDao->update($ramaisEx);
-            header("Location: /prefeitura/index.php?p=ramaisEx");
+            header("Location: /prefeitura/index.php?p=ramaisEx&status=2");
             exit;
         } else {
             $ramaisEx->setId($id);
@@ -64,7 +64,7 @@ class ControlerRamaisEx
             $ramaisEx->setNumero($this->numero);
             $ramaisEx->setSetor($this->setor);
             $ramaisExDao->update($ramaisEx);
-            header("Location: /prefeitura/index.php?p=ramaisEx");
+            header("Location: /prefeitura/index.php?p=ramaisEx&status=2");
             exit;
         }
     }

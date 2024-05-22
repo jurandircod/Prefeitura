@@ -3,6 +3,7 @@
 <?php
 require_once 'vendor/autoload.php';
 $pages = new \App\View\Pages;
+use App\Controler\Alerts;
 session_start();
 ?>
 
@@ -35,6 +36,11 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="shortcut icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/6a/4b/6e/6a4b6ecd-668b-abe5-4eff-58a16ecab229/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" type="image/x-icon">
+
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -133,18 +139,6 @@ session_start();
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item ml-1">
-                                        <a href="index.php?p=locais" class="nav-link">
-                                            <i class="nav-icon fas fa-solid fa-street-view"></i>
-                                            <p>Cadastrar Locais</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ml-1">
-                                        <a href="index.php?p=secretaria" class="nav-link">
-                                            <i class="nav-icon fas fa-solid fa-globe"></i>
-                                            <p>Cadastrar Secretaria</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ml-1">
                                         <a href="index.php?p=ramaisEx" class="nav-link">
                                             <i class="nav-icon fas fa-solid fa-phone-volume"></i>
                                             <p>Cad Ramais Externos</p>
@@ -157,9 +151,21 @@ session_start();
                                         </a>
                                     </li>
                                     <li class="nav-item ml-1">
-                                        <a href="index.php?p=usuarios" class="nav-link">
+                                        <a href="index.php?p=locais" class="nav-link">
+                                            <i class="nav-icon fas fa-solid fa-street-view"></i>
+                                            <p>Cadastrar Locais</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-1">
+                                        <a href="index.php?p=secretaria" class="nav-link">
+                                            <i class="nav-icon fas fa-solid fa-globe"></i>
+                                            <p>Cadastrar Secretaria</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-1">
+                                        <a href="index.php?p=usuario" class="nav-link">
                                             <i class="nav-icon fas fa-solid fa-users"></i>
-                                            <p>Cadastrar Usuario</p>
+                                            <p>Cadastrar Usuarios</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -255,14 +261,21 @@ session_start();
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
 
+    <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="plugins/toastr/toastr.min.js"></script>
+
 
     <?php if (@$_GET['p'] == "search" or @$_GET['p'] == "") : ?>
         <script src="dist/js/ajax/search.js"></script>
     <?php elseif (@$_GET['p'] == "ramaisInSearch") : ?>
         <script src="dist/js/ajax/ramaisInSearch.js"></script>
-    <?php elseif(@$_GET['p'] == "locaisSearch"): ?>
+    <?php elseif (@$_GET['p'] == "locaisSearch") : ?>
         <script src="dist/js//ajax//locais.js"></script>
-        <?php endif?>
+    <?php endif ?>
+
+    <?php Alerts::alerts(@$_GET['status']); ?>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
@@ -285,10 +298,14 @@ session_start();
             "responsive": true,
         });
     });
-</script>
-
-<script>
-
+    
+    //limparUrl();
+    function limparUrl() {
+        const novaUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({
+            path: novaUrl
+        }, '', novaUrl);
+    }
 </script>
 
 </html>

@@ -14,7 +14,7 @@ class Consultasearch{
         
         $sql = "SELECT tblocais.nome, tbramais_in.responsavel, tbramais_in.numero, tbramais_in.setor 
         FROM tbramais_in JOIN tblocais ON tbramais_in.fklocais = tblocais.id 
-        WHERE tbramais_in.responsavel LIKE ? OR tbramais_in.numero LIKE ? OR tbramais_in.setor LIKE ? ORDER BY tblocais.nome ASC"; //consulta SQL
+        WHERE tbramais_in.responsavel LIKE ? OR tbramais_in.numero LIKE ? OR tbramais_in.setor LIKE ? OR tblocais.nome LIKE ? ORDER BY tblocais.nome ASC"; //consulta SQL
     try {
         $stmt = Conexao::getConn()->prepare($sql);
         // Bind the search term to all three placeholders
@@ -23,6 +23,7 @@ class Consultasearch{
         $stmt->bindValue(1, $searchParam);
         $stmt->bindValue(2, $searchParam);
         $stmt->bindValue(3, $searchParam);
+        $stmt->bindValue(4, $searchParam);
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

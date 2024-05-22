@@ -26,8 +26,8 @@ var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
         try {
-            var resposta = JSON.parse(xhr.responseText);
-            mostrarResultados(resposta); // Chama a função para mostrar os resultados
+            var ramaisIn = JSON.parse(xhr.responseText);
+            mostrarResultados(ramaisIn); // Chama a função para mostrar os resultados
         } catch (error) {
             console.error("Error parsing JSON response:", error); // Handle JSON parsing errors
         }
@@ -40,11 +40,11 @@ if (search.trim() === '') { // Verifica se o campo de pesquisa está vazio
 
 
 // Função para mostrar os resultados na página
-function mostrarResultados(resultados) {
+function mostrarResultados(ramaisIn) {
     var contentDiv = document.getElementById('Content');
     contentDiv.innerHTML = ''; // Limpa o conteúdo atual dos cards
 
-    resultados.forEach(function (resultado) {
+    ramaisIn.forEach(function (resultado) {
         var cardHtml = `
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column item">
                 <div class="card bg-light d-flex flex-fill">

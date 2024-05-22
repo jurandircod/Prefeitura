@@ -1,7 +1,6 @@
 <?php
 
 require_once '../../../vendor/autoload.php';
-
 use App\Model\RamaisIn\RamaisInDao;
 use App\Model\RamaisIn\RamaisIn;
 
@@ -27,12 +26,12 @@ class ControlerRamaisIn
     {
         if ($this->responsavel != null) {
             $ramaisIn->setNumero($this->numero);
-            $ramaisIn->setResponsavel($this->responsavel);
+            $ramaisIn->setResponsavel(ucfirst($this->responsavel));
             $ramaisIn->setfkLocais($this->idLocais);
             $ramaisIn->setSetor(ucfirst($this->setor));
             $ramaisInDao->create($ramaisIn);
             // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura/index.php?p=ramaisIn");
+            header("Location: /prefeitura/index.php?p=ramaisIn&status=1");
             exit; // Termina o script após o redirecionamento
         } else {
             $ramaisIn->setNumero($this->numero);
@@ -41,21 +40,19 @@ class ControlerRamaisIn
             $ramaisIn->setSetor(ucfirst($this->setor));
             $ramaisInDao->create($ramaisIn);
             // Redirecionamento para uma rota dentro do servidor
-            header("Location: /prefeitura/index.php?p=ramaisIn");
+            header("Location: /prefeitura/index.php?p=ramaisIn&status=1");
         }
     }
 
     public function update(RamaisIn $ramaisIn, RamaisInDao $ramaisInDao, $id)
     {
-
-
         $ramaisIn->setId($id);
         $ramaisIn->setResponsavel($this->responsavel);
         $ramaisIn->setNumero($this->numero);
         $ramaisIn->setSetor($this->setor);
         $ramaisIn->setfkLocais($this->idLocais);
         $ramaisInDao->update($ramaisIn);
-        header("Location: /prefeitura/index.php?p=ramaisIn");
+        header("Location: /prefeitura/index.php?p=ramaisIn&status=2");
         exit;
     }
 
@@ -64,7 +61,7 @@ class ControlerRamaisIn
         $ramaisIn->setId($id);
         $ramaisInDao->delete($ramaisIn);
 
-        header("Location: /prefeitura/index.php?p=ramaisIn");
+        header("Location: /prefeitura/index.php?p=ramaisIn&status=4");
         exit;
     }
 }
