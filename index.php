@@ -52,7 +52,7 @@ session_start();
         </div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -178,6 +178,7 @@ session_start();
             if (!isset($_SESSION['nomeUsuario'])) {
                 $user = $pages->mostrarBuscadores(@$_GET['p']);
             } else {
+                $user = $pages->mostrarBuscadores(@$_GET['p']);
                 $user = $pages->mostrarCadastramento(@$_GET['p']);
             }
             ?>
@@ -185,16 +186,16 @@ session_start();
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="http://www.cruzeirodooeste.pr.gov.br/">Prefeitura de Cruzeiro do Oeste/PR</a>.</strong>
-            All rights reserved.
+        <footer class="main-footer fixed-bottom">
+            <strong>Copyright &copy; 2024-2024 <a href="http://www.cruzeirodooeste.pr.gov.br/">Prefeitura de Cruzeiro do Oeste/PR</a>.</strong>
+            All rights reserved &copy; Jurandir Aparecido .
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0
+                <b>Version</b> 2.0
             </div>
         </footer>
 
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
+        <aside class="control-sidebar control-sidebar-green">
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->

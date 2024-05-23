@@ -9,11 +9,7 @@
                             <input autocomplete="off" id="ajax" type="search" class="ajax form-control" placeholder="Pesquise pelo nome ou secretaria">
                         </div>
                         <div class="row" style="justify-content: center">
-                            <a style="margin-top:25px" onclick="exportarPDF()" class="btn btn-success">Exportar PDF</a>
-                            <div style="margin-left:35px"><a style="margin-top:25px" href="local/ramal/lista/lista_fisica/download_pdf.php?id=1" class="btn btn-primary">Baixar Lista Física</a></div>
-                            <div style="margin-left:30px; margin-top: 10px">
-                                <h6 style="margin-top:25px;opacity: 60%">Última atualização:28/07/2023 14:42</h6>
-                            </div>
+                            <a style="margin-top:25px" onclick="exportarPDF()" href="downloadPdf.php" class="btn btn-success">Exportar PDF</a>
                         </div>
                     </div>
                 </div>

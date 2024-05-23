@@ -39,9 +39,9 @@ class Pages
       include('RamaisIn.php');
    }
 
-   private function mostrarLocaisSearch()
+   private function mostrarLocais()
    {
-      include('Locais.php');
+      include('Cadastrar/Locais.php');
    }
 
    public function mostrarCadastramento($pages)
@@ -65,6 +65,9 @@ class Pages
          case "ramaisInSearch":
             $this->mostrarSearch();
             break;
+         case "locais":
+            $this->mostrarLocais();
+            break;
          default:
             $this->mostrarRamaisIn();
             break;
@@ -79,9 +82,6 @@ class Pages
             break;
          case "ramaisInSearch":
             $this->mostrarRamaisIn();
-            break;
-         case "locaisSearch":
-            $this->mostrarLocaisSearch();
             break;
          default:
             $this->mostrarRamaisIn();

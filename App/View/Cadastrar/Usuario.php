@@ -1,5 +1,5 @@
-<div class="container-fluid">
-    <h2 class="text-center display-4">Lista de Ramais Externos</h2>
+<div class="container-fluid h-100">
+
         <div class="card card-solid" style="justify-content: center; align-items: center;">
             <div class="pb-1">
                 <div id="Content" class="row">
