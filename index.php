@@ -35,7 +35,7 @@ session_start();
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="shortcut icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/6a/4b/6e/6a4b6ecd-668b-abe5-4eff-58a16ecab229/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="dist/img//ADMINLTElogo.png" type="image/x-icon">
 
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
