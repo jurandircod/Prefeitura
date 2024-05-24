@@ -29,3 +29,5 @@ Utilize as funcionalidades disponíveis para manipular os dados de exemplo ou ad
 Observe como as alterações são refletidas instantaneamente na interface graças ao uso de AJAX.
 **Email para acesso:admin@admin.com**
 **Senha para acesso:admin123**
+
+link de acesso funcional: ramaiscruzeirodooeste.great-site.net
